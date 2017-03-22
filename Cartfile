@@ -1,0 +1,4 @@
+github "Alamofire/Alamofire" ~> 4.4.0
+github "yume190/JSONDecodeKit" ~> 1.0.7
+github "krzyzanowskim/CryptoSwift"
+
