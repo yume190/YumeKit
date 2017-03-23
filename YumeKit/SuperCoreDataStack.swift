@@ -58,13 +58,14 @@ open class SuperCoreDataStack {
         }
         
         public var stack:SuperCoreDataStack? {
-            return customStackName(name: SuperCoreDataStackConfig.defaultStackName)
+            return customStackName(name: SuperCoreDataStackConfig.defaultStackName,prefix: "")
         }
         
-        public func customStackName(name:String) -> SuperCoreDataStack? {
+        public func customStackName(name:String,prefix:String) -> SuperCoreDataStack? {
             return SuperCoreDataStack(
                 storeType:self.type,
-                stackName:name
+                stackName:name,
+                resourcePrefix:prefix
             )
         }
     }
