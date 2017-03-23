@@ -19,7 +19,7 @@ struct FetchRequest {
     // ResultType : NSFetchRequestResult
     static func templateFetchRequest<T:NSFetchRequestResult>(
         name:FetchRequestTemplateName,
-        mom:NSManagedObjectModel = SuperCoreDataStack.defaultStack.managedObjectModel) -> NSFetchRequest<T>? {
+        mom:NSManagedObjectModel) -> NSFetchRequest<T>? {
         return mom.fetchRequestTemplate(forName: name.rawValue) as? NSFetchRequest<T>
     }
 }

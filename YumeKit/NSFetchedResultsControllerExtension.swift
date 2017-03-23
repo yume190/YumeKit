@@ -106,7 +106,7 @@ extension MOProtocol where Self:NSManagedObject {
         sortDescriptors: [NSSortDescriptor]?,
         predicate: NSPredicate?, 
         delegate: NSFetchedResultsControllerDelegate,
-        context: NSManagedObjectContext! = SuperCoreDataStack.defaultStack.managedObjectContext!)
+        context: NSManagedObjectContext! = mainMOC!)
         -> NSFetchedResultsController<Self> {
         
         let fetchRequest = NSFetchRequest<Self>(entityName: entityName)

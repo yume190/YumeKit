@@ -14,50 +14,88 @@
 import UIKit
 import CoreData
 
-public var mainMOC:NSManagedObjectContext? = SuperCoreDataStack.defaultStack.managedObjectContext
-public var backgroundMOC:NSManagedObjectContext? = SuperCoreDataStack.defaultStack.backgroundContext
+public var mainMOC:NSManagedObjectContext? = nil//SuperCoreDataStack.defaultStack.managedObjectContext
+public var backgroundMOC:NSManagedObjectContext? = nil//SuperCoreDataStack.defaultStack.backgroundContext
+public func setSuperStackMOC(main:NSManagedObjectContext?, background:NSManagedObjectContext?) {
+    mainMOC = main
+    backgroundMOC = background
+}
 
-let infoDictionary = Bundle.main.infoDictionary as NSDictionary?
-let stackName = "BusApp"//infoDictionary!["CFBundleName"] as! String
-let storeName = stackName + ".sqlite"
-let bigUpdateStoreName = "_" + storeName
-let storeNameURL = applicationDocumentsDirectory.appendingPathComponent(storeName)
-let bigUpdateStoreNameURL = applicationDocumentsDirectory.appendingPathComponent(bigUpdateStoreName)
-let groupName = "group.yume190Team"
-let stackOption = [NSMigratePersistentStoresAutomaticallyOption: true,
-                   NSInferMappingModelAutomaticallyOption: true]
+//let groupName = "group.yume190Team"
 
-let applicationDocumentsDirectory: URL = {
-    let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-//    let url = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier(groupName)
-        return urls.last!
+fileprivate struct SuperCoreDataStackConfig {
+    fileprivate static let bigUpdatePrefix = "_"
+    fileprivate static let defaultStackName:String = {
+        let bundleName = Bundle.main.infoDictionary?["CFBundleName"] as? String
+        return bundleName ?? "YumeKit"
     }()
+    fileprivate static let stackOption = [
+        NSMigratePersistentStoresAutomaticallyOption: true,
+        NSInferMappingModelAutomaticallyOption: true
+    ]
+}
 
-open class SuperCoreDataStack: NSObject {
+open class SuperCoreDataStack {
     
-    let persistentStoreURL : URL?
-    let storeType : String
+    fileprivate let resourcePrefix:String
+    fileprivate let storeType:String
+    fileprivate let stackName:String
     
-    //TODO: Move away from this pattern so developers can use their own stack name and specify store type.
-    open class var defaultStack : SuperCoreDataStack {
-        struct DefaultStatic {
-            static let instance : SuperCoreDataStack = SuperCoreDataStack(storeType:NSSQLiteStoreType,storeURL: applicationDocumentsDirectory.appendingPathComponent(storeName))
-        }
-        return DefaultStatic.instance
-    }
-    
-    open class var inMemoryStack : SuperCoreDataStack {
-        struct InMemoryStatic {
-            static let instance : SuperCoreDataStack = SuperCoreDataStack(storeType:NSInMemoryStoreType,storeURL:nil)
-        }
-        return InMemoryStatic.instance
-    }
-    
-    init(storeType: String, storeURL: URL?) {
-        self.persistentStoreURL = storeURL
-        self.storeType = storeType
+    public enum CoreDataType {
+        case sql
+        case memory
+        case binary
         
-        super.init()
+        public var type:String {
+            switch self {
+            case .sql:
+                return NSSQLiteStoreType
+            case .memory:
+                return NSInMemoryStoreType
+            case .binary:
+                return NSInMemoryStoreType
+            }
+        }
+        
+        public var stack:SuperCoreDataStack? {
+            return customStackName(name: SuperCoreDataStackConfig.defaultStackName)
+        }
+        
+        public func customStackName(name:String) -> SuperCoreDataStack? {
+            return SuperCoreDataStack(
+                storeType:self.type,
+                stackName:name
+            )
+        }
+    }
+    
+    fileprivate let storeName:String
+    fileprivate let bigUpdateStoreName:String
+    fileprivate let storeNameURL:URL
+    fileprivate let bigUpdateStoreNameURL:URL
+    fileprivate let userDocumentURL:URL
+    fileprivate let modelURL:URL
+    init?(storeType: String,stackName:String,resourcePrefix:String = "") {
+        guard
+        let userDocumentURL:URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last,
+        let modelURL = Bundle.main.url(forResource: stackName, withExtension: "momd")
+        else {
+            //    let url = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier(groupName)
+            return nil
+        }
+        self.stackName = stackName
+        self.storeType = storeType
+        self.resourcePrefix = resourcePrefix
+        
+        self.storeName = stackName + ".sqlite"
+        self.bigUpdateStoreName = SuperCoreDataStackConfig.bigUpdatePrefix + storeName
+        self.storeNameURL = userDocumentURL.appendingPathComponent(storeName)
+        self.bigUpdateStoreNameURL = userDocumentURL.appendingPathComponent(bigUpdateStoreName)
+        self.userDocumentURL = userDocumentURL
+        self.modelURL = modelURL
+        
+        checkAndCopyDatabaseFromProject()
+        setSuperStackMOC(main: self.managedObjectContext, background: self.backgroundContext)
     }
     
     deinit{
@@ -69,17 +107,118 @@ open class SuperCoreDataStack: NSObject {
     
     // MARK: - Core Data stack
     
-    lazy var managedObjectModel: NSManagedObjectModel = {
-        // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
-        let modelURL = Bundle.main.url(forResource: stackName, withExtension: "momd")
-        return NSManagedObjectModel(contentsOf: modelURL!)!
-        }()
+    // MARK: MOM
+    lazy var managedObjectModel: NSManagedObjectModel? = NSManagedObjectModel(contentsOf: self.modelURL)
     
-    open lazy var managedObjectContext: NSManagedObjectContext? = self.createMainMOC(self.copiedCoordinator())
-    open lazy var backgroundContext: NSManagedObjectContext? = self.createBackgroundMOC(self.normalCoordinator(storeNameURL))
-    open lazy var bigUpdateManagedObjectContext: NSManagedObjectContext? = self.createMainMOC(self.normalCoordinator(bigUpdateStoreNameURL))
-    open lazy var bigUpdateBackgroundContext: NSManagedObjectContext? = self.createBackgroundMOC(self.normalCoordinator(bigUpdateStoreNameURL))
+    // MARK: Coordinator
+    private func normalCoordinator(_ url:URL) -> NSPersistentStoreCoordinator? {
+        guard let managedObjectModel = self.managedObjectModel else {
+            return nil
+        }
+        
+        let coordinator: NSPersistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
+        do {
+            try coordinator.addPersistentStore(ofType: self.storeType, configurationName: nil, at: url, options: SuperCoreDataStackConfig.stackOption)
+        } catch {
+            return nil
+        }
+        return coordinator
+    }
     
+    // MARK: MOC
+    open lazy var managedObjectContext: NSManagedObjectContext? =
+        self.createMainMOC(self.normalCoordinator(self.storeNameURL))
+    open lazy var backgroundContext: NSManagedObjectContext? =
+        self.createBackgroundMOC(self.normalCoordinator(self.storeNameURL))
+    open lazy var bigUpdateManagedObjectContext: NSManagedObjectContext? =
+        self.createMainMOC(self.normalCoordinator(self.bigUpdateStoreNameURL))
+    open lazy var bigUpdateBackgroundContext: NSManagedObjectContext? =
+        self.createBackgroundMOC(self.normalCoordinator(self.bigUpdateStoreNameURL))
+    
+    // MARK: UTIL
+    func createMainMOC(_ coordinator:NSPersistentStoreCoordinator?) -> NSManagedObjectContext? {
+        guard let coordinator = coordinator else {
+            return nil
+        }
+        let managedObjectContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType)
+        managedObjectContext.persistentStoreCoordinator = coordinator
+        managedObjectContext.mergePolicy = NSRollbackMergePolicy
+        return managedObjectContext
+    }
+    
+    private func createBackgroundMOC(_ coordinator:NSPersistentStoreCoordinator?) -> NSManagedObjectContext? {
+        guard let coordinator = coordinator else {
+            return nil
+        }
+        let managedObjectContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.privateQueueConcurrencyType)
+        managedObjectContext.persistentStoreCoordinator = coordinator
+        managedObjectContext.mergePolicy = NSOverwriteMergePolicy
+        managedObjectContext.undoManager = nil
+        return managedObjectContext
+    }
+}
+
+extension SuperCoreDataStack {
+    fileprivate func checkAndCopyDatabaseFromProject() {
+        if !FileManager.default.fileExists(atPath: self.storeNameURL.path) {
+            copyDatabaseFileFromMainBundle("sqlite")
+            copyDatabaseFileFromMainBundle("sqlite-shm")
+            copyDatabaseFileFromMainBundle("sqlite-wal")
+        }
+    }
+    
+    fileprivate func copyDatabaseFileFromMainBundle(_ extensionName:String) {
+        let targetName = self.resourcePrefix + "BusApp"
+        let target = targetName + "." + extensionName
+        guard let fromFile = Bundle.main.url(forResource: targetName, withExtension: extensionName) else {
+            print("Can't load \(target) from main bundle")
+            return
+        }
+        
+        print("Load \(target) from main bundle")
+        let toFile = self.userDocumentURL.appendingPathComponent(stackName + "." + extensionName)
+        self.copyFile(fromFile, toFile: toFile)
+    }
+    
+    public func updatingDatabase() {
+        if FileManager.default.fileExists(atPath: self.storeNameURL.path) {
+            updatingDatabaseFile(self.bigUpdateStoreName,self.storeName)
+            updatingDatabaseFile(self.bigUpdateStoreName + "-shm",self.storeName + "-shm")
+            updatingDatabaseFile(self.bigUpdateStoreName + "-wal",self.storeName + "-wal")
+        }
+    }
+    
+    private func updatingDatabaseFile(_ from:String,_ to:String) {
+        let fromFile = self.userDocumentURL.appendingPathComponent(from)
+        let toFile = self.userDocumentURL.appendingPathComponent(to)
+        
+        deleteFile(toFile)
+        copyFile(fromFile, toFile: toFile)
+        deleteFile(fromFile)
+    }
+    
+    private func deleteFile(_ file:URL) {
+        if FileManager.default.fileExists(atPath: file.path) {
+            do {
+                try FileManager.default.removeItem(at: file)
+            } catch {
+                NSLog("\(error)")
+            }
+        }
+    }
+    
+    private func copyFile(_ fromFile:URL,toFile:URL) {
+        if !FileManager.default.fileExists(atPath: toFile.path) {
+            do {
+                try FileManager.default.copyItem(at: fromFile, to: toFile)
+            } catch {
+                NSLog("\(error)")
+            }
+        }
+    }
+}
+
+extension SuperCoreDataStack {
     // MARK: - Core Data Saving support
     
     open func saveContext () {
@@ -101,120 +240,12 @@ open class SuperCoreDataStack: NSObject {
             }
         }
     }
-    
-    // MARK: UTIL
-    
-    func createMainMOC(_ coordinator:NSPersistentStoreCoordinator?) -> NSManagedObjectContext? {
-        guard let coordinator = coordinator else {
-            return nil
-        }
-        let managedObjectContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType)
-        managedObjectContext.persistentStoreCoordinator = coordinator
-        managedObjectContext.mergePolicy = NSRollbackMergePolicy
-        return managedObjectContext
-    }
-    
-    private func createBackgroundMOC(_ coordinator:NSPersistentStoreCoordinator?) -> NSManagedObjectContext? {
-        guard let coordinator = coordinator else {
-            return nil
-        }
-        let managedObjectContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.privateQueueConcurrencyType)
-        managedObjectContext.persistentStoreCoordinator = coordinator
-        managedObjectContext.mergePolicy = NSOverwriteMergePolicy
-        managedObjectContext.undoManager = nil
-        return managedObjectContext
-    }
-    
-    private func copiedCoordinator() -> NSPersistentStoreCoordinator? {
-        checkAndCopyDatabaseFromProject()
-        return normalCoordinator(storeNameURL)
-    }
-    
-    private func checkAndCopyDatabaseFromProject() {
-        if !FileManager.default.fileExists(atPath: self.persistentStoreURL!.path) {
-            copyDatabaseFileFromMainBundle("sqlite")
-            copyDatabaseFileFromMainBundle("sqlite-shm")
-            copyDatabaseFileFromMainBundle("sqlite-wal")
-        }
-    }
-    
-    private func copyDatabaseFileFromMainBundle(_ extensionName:String) {
-        #if TC
-            let prefix = "TC_"
-        #elseif PD
-            let prefix = "PD_"
-        #elseif CH
-            let prefix = "CH_"
-        #elseif KM
-            let prefix = "KM_"
-        #else
-            let prefix = ""
-        #endif
-        
-        let target = prefix + "BusApp"
-        guard let fromFile = Bundle.main.url(forResource: target, withExtension: extensionName) else {
-            print("Can't load \(target) from main bundle")
-            return
-        }
-        
-        print("Load \(target) from main bundle")
-        let toFile = applicationDocumentsDirectory.appendingPathComponent(stackName + "." + extensionName)
-        SuperCoreDataStack.copyFile(fromFile, toFile: toFile)
-    }
-    
-    public static func updatingDatabase() {
-        if FileManager.default.fileExists(atPath: bigUpdateStoreNameURL.path) {
-            updatingDatabaseFile(bigUpdateStoreName,storeName)
-            updatingDatabaseFile(bigUpdateStoreName + "-shm",storeName + "-shm")
-            updatingDatabaseFile(bigUpdateStoreName + "-wal",storeName + "-wal")
-        }
-    }
-    
-    private static func updatingDatabaseFile(_ from:String,_ to:String) {
-        let fromFile = applicationDocumentsDirectory.appendingPathComponent(from)
-        let toFile = applicationDocumentsDirectory.appendingPathComponent(to)
-        
-        deleteFile(toFile)
-        copyFile(fromFile, toFile: toFile)
-        deleteFile(fromFile)
-    }
-    
-    private static func deleteFile(_ file:URL) {
-        if FileManager.default.fileExists(atPath: file.path) {
-            do {
-                try FileManager.default.removeItem(at: file)
-            } catch {
-                NSLog("\(error)")
-            }
-        }
-    }
-    
-    private static func copyFile(_ fromFile:URL,toFile:URL) {
-        if !FileManager.default.fileExists(atPath: toFile.path) {
-            do {
-                try FileManager.default.copyItem(at: fromFile, to: toFile)
-            } catch {
-                NSLog("\(error)")
-            }
-        }
-    }
-    
-    private func normalCoordinator(_ url:URL) -> NSPersistentStoreCoordinator? {
-        let coordinator: NSPersistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-        do {
-            try coordinator.addPersistentStore(ofType: self.storeType as String, configurationName: nil, at: url, options: stackOption)
-        } catch {
-            return nil
-        }
-        return coordinator
-    }
-    
 }
 
-public extension NSManagedObjectContext {
+extension NSManagedObjectContext {
     public func mSave() {
         //TODO: Improve error handling.
-
+        
         if self.hasChanges {
             do {
                 try self.save()
@@ -222,7 +253,7 @@ public extension NSManagedObjectContext {
                 // Replace this implementation with code to handle the error appropriately.
                 // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 NSLog("Unresolved error \(error), \(error.userInfo)")
-    //            abort()
+                //            abort()
             }
         }
     }
