@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct HTML {
+public struct HTML {
     public static func htmlToString(html:String) -> String {
         guard let data = html.data(using: String.Encoding.unicode, allowLossyConversion: true) else {
             return html

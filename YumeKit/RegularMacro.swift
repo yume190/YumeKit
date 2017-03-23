@@ -20,7 +20,7 @@ extension String {
     }
 }
 
-struct RegexHelper {
+public struct RegexHelper {
     private var regex: NSRegularExpression? = nil
     
     public init(_ pattern: String) {
