@@ -114,7 +114,7 @@ open class SuperCoreDataStack: NSObject {
         return managedObjectContext
     }
     
-    func createBackgroundMOC(_ coordinator:NSPersistentStoreCoordinator?) -> NSManagedObjectContext? {
+    private func createBackgroundMOC(_ coordinator:NSPersistentStoreCoordinator?) -> NSManagedObjectContext? {
         guard let coordinator = coordinator else {
             return nil
         }
@@ -125,12 +125,12 @@ open class SuperCoreDataStack: NSObject {
         return managedObjectContext
     }
     
-    func copiedCoordinator() -> NSPersistentStoreCoordinator? {
+    private func copiedCoordinator() -> NSPersistentStoreCoordinator? {
         checkAndCopyDatabaseFromProject()
         return normalCoordinator(storeNameURL)
     }
     
-    func checkAndCopyDatabaseFromProject() {
+    private func checkAndCopyDatabaseFromProject() {
         if !FileManager.default.fileExists(atPath: self.persistentStoreURL!.path) {
             copyDatabaseFileFromMainBundle("sqlite")
             copyDatabaseFileFromMainBundle("sqlite-shm")
@@ -138,7 +138,7 @@ open class SuperCoreDataStack: NSObject {
         }
     }
     
-    func copyDatabaseFileFromMainBundle(_ extensionName:String) {
+    private func copyDatabaseFileFromMainBundle(_ extensionName:String) {
         #if TC
             let prefix = "TC_"
         #elseif PD
@@ -162,7 +162,7 @@ open class SuperCoreDataStack: NSObject {
         SuperCoreDataStack.copyFile(fromFile, toFile: toFile)
     }
     
-    static func updatingDatabase() {
+    public static func updatingDatabase() {
         if FileManager.default.fileExists(atPath: bigUpdateStoreNameURL.path) {
             updatingDatabaseFile(bigUpdateStoreName,storeName)
             updatingDatabaseFile(bigUpdateStoreName + "-shm",storeName + "-shm")
@@ -170,7 +170,7 @@ open class SuperCoreDataStack: NSObject {
         }
     }
     
-    static func updatingDatabaseFile(_ from:String,_ to:String) {
+    private static func updatingDatabaseFile(_ from:String,_ to:String) {
         let fromFile = applicationDocumentsDirectory.appendingPathComponent(from)
         let toFile = applicationDocumentsDirectory.appendingPathComponent(to)
         
@@ -179,7 +179,7 @@ open class SuperCoreDataStack: NSObject {
         deleteFile(fromFile)
     }
     
-    static func deleteFile(_ file:URL) {
+    private static func deleteFile(_ file:URL) {
         if FileManager.default.fileExists(atPath: file.path) {
             do {
                 try FileManager.default.removeItem(at: file)
@@ -189,7 +189,7 @@ open class SuperCoreDataStack: NSObject {
         }
     }
     
-    static func copyFile(_ fromFile:URL,toFile:URL) {
+    private static func copyFile(_ fromFile:URL,toFile:URL) {
         if !FileManager.default.fileExists(atPath: toFile.path) {
             do {
                 try FileManager.default.copyItem(at: fromFile, to: toFile)
@@ -199,7 +199,7 @@ open class SuperCoreDataStack: NSObject {
         }
     }
     
-    func normalCoordinator(_ url:URL) -> NSPersistentStoreCoordinator? {
+    private func normalCoordinator(_ url:URL) -> NSPersistentStoreCoordinator? {
         let coordinator: NSPersistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
         do {
             try coordinator.addPersistentStore(ofType: self.storeType as String, configurationName: nil, at: url, options: stackOption)
