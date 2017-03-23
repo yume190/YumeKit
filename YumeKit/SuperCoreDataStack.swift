@@ -14,8 +14,8 @@
 import UIKit
 import CoreData
 
-var mainMOC:NSManagedObjectContext? = SuperCoreDataStack.defaultStack.managedObjectContext
-var backgroundMOC:NSManagedObjectContext? = SuperCoreDataStack.defaultStack.backgroundContext
+public var mainMOC:NSManagedObjectContext? = SuperCoreDataStack.defaultStack.managedObjectContext
+public var backgroundMOC:NSManagedObjectContext? = SuperCoreDataStack.defaultStack.backgroundContext
 
 let infoDictionary = Bundle.main.infoDictionary as NSDictionary?
 let stackName = "BusApp"//infoDictionary!["CFBundleName"] as! String
@@ -36,24 +36,24 @@ let applicationDocumentsDirectory: URL = {
 open class SuperCoreDataStack: NSObject {
     
     let persistentStoreURL : URL?
-    let storeType : NSString
+    let storeType : String
     
     //TODO: Move away from this pattern so developers can use their own stack name and specify store type.
     open class var defaultStack : SuperCoreDataStack {
         struct DefaultStatic {
-            static let instance : SuperCoreDataStack = SuperCoreDataStack(storeType:NSSQLiteStoreType as NSString,storeURL: applicationDocumentsDirectory.appendingPathComponent(storeName))
+            static let instance : SuperCoreDataStack = SuperCoreDataStack(storeType:NSSQLiteStoreType,storeURL: applicationDocumentsDirectory.appendingPathComponent(storeName))
         }
         return DefaultStatic.instance
     }
     
     open class var inMemoryStack : SuperCoreDataStack {
         struct InMemoryStatic {
-            static let instance : SuperCoreDataStack = SuperCoreDataStack(storeType:NSInMemoryStoreType as NSString,storeURL:nil)
+            static let instance : SuperCoreDataStack = SuperCoreDataStack(storeType:NSInMemoryStoreType,storeURL:nil)
         }
         return InMemoryStatic.instance
     }
     
-    init(storeType: NSString, storeURL: URL?) {
+    init(storeType: String, storeURL: URL?) {
         self.persistentStoreURL = storeURL
         self.storeType = storeType
         
@@ -153,9 +153,11 @@ open class SuperCoreDataStack: NSObject {
         
         let target = prefix + "BusApp"
         guard let fromFile = Bundle.main.url(forResource: target, withExtension: extensionName) else {
+            print("Can't load \(target) from main bundle")
             return
         }
         
+        print("Load \(target) from main bundle")
         let toFile = applicationDocumentsDirectory.appendingPathComponent(stackName + "." + extensionName)
         SuperCoreDataStack.copyFile(fromFile, toFile: toFile)
     }
