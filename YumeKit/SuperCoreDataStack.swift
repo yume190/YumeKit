@@ -182,7 +182,7 @@ extension SuperCoreDataStack {
     }
     
     public func updatingDatabase() {
-        if FileManager.default.fileExists(atPath: self.storeNameURL.path) {
+        if FileManager.default.fileExists(atPath: self.bigUpdateStoreNameURL.path) {
             updatingDatabaseFile(self.bigUpdateStoreName,self.storeName)
             updatingDatabaseFile(self.bigUpdateStoreName + "-shm",self.storeName + "-shm")
             updatingDatabaseFile(self.bigUpdateStoreName + "-wal",self.storeName + "-wal")
