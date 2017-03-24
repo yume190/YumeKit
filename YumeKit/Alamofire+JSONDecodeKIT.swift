@@ -15,7 +15,7 @@ public enum Entry {
     case StopEstimateTime // "http://163.29.110.218/busstop/getdata"
     case StopSchedule // "http://163.29.110.218/api/schedule"
     case custom(url:String)
-    var url:String {
+    fileprivate var url:String {
         switch self {
         case .StopEstimateTime:
             return "http://163.29.110.218/busstop/getdata"

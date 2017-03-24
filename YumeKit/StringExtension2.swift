@@ -42,3 +42,17 @@ extension NSAttributedString {
         return str
     }
 }
+
+extension NSMutableAttributedString {
+    public static func + (l:NSMutableAttributedString,r:String) -> NSMutableAttributedString {
+        let str = NSMutableAttributedString(attributedString: l)
+        str.append(NSAttributedString(string: r))
+        return str
+    }
+    
+    public static func + (l:NSMutableAttributedString,r:NSAttributedString) -> NSMutableAttributedString {
+        let str = NSMutableAttributedString(attributedString: l)
+        str.append(r)
+        return str
+    }
+}
