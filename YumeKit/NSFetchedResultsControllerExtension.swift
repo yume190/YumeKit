@@ -137,10 +137,10 @@ extension MOProtocol where Self:NSManagedObject {
         } catch let error1 as NSError {
             error = error1
         }
-        
-        if (error != nil){
+            
+        if let _error = error {
             //TODO: This needs actual error handling.
-            print("Error : \(error)")
+            print("Error : \(_error)")
         }
         
         return tempFetchedResultsController

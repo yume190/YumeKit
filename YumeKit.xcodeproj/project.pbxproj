@@ -197,7 +197,6 @@
 				A8E19C291E82488F000DE567 /* Frameworks */,
 				A8E19C2A1E82488F000DE567 /* Headers */,
 				A8E19C2B1E82488F000DE567 /* Resources */,
-				A83699AE1E82525500B6C006 /* Carthage */,
 			);
 			buildRules = (
 			);
@@ -254,26 +253,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		A83699AE1E82525500B6C006 /* Carthage */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/JSONDecodeKit.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/CryptoSwift.framework",
-			);
-			name = Carthage;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A8E19C281E82488F000DE567 /* Sources */ = {
