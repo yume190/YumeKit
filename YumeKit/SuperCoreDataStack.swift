@@ -53,7 +53,7 @@ open class SuperCoreDataStack {
             case .memory:
                 return NSInMemoryStoreType
             case .binary:
-                return NSInMemoryStoreType
+                return NSBinaryStoreType
             }
         }
         
@@ -95,7 +95,8 @@ open class SuperCoreDataStack {
         self.userDocumentURL = userDocumentURL
         self.modelURL = modelURL
         
-        checkAndCopyDatabaseFromProject()
+        self.checkAndCopyDatabaseFromProject()
+        self.updatingDatabase()
         setSuperStackMOC(main: self.managedObjectContext, background: self.backgroundContext)
     }
     
@@ -181,7 +182,7 @@ extension SuperCoreDataStack {
         self.copyFile(fromFile, toFile: toFile)
     }
     
-    public func updatingDatabase() {
+    fileprivate func updatingDatabase() {
         if FileManager.default.fileExists(atPath: self.bigUpdateStoreNameURL.path) {
             updatingDatabaseFile(self.bigUpdateStoreName,self.storeName)
             updatingDatabaseFile(self.bigUpdateStoreName + "-shm",self.storeName + "-shm")
