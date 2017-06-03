@@ -38,11 +38,14 @@ open class Updater {
         delegate?.apiRequest(API).response {
             res in
             guard let data = res.data else {
+                self.forceUpdate()
                 return
             }
 
             if data.md5().toHexString() != self.getCurrentMD5(), self.saveFile(data) {
                 self.delegate?.update(data)
+            } else {
+                self.forceUpdate()
             }
         }
     }
