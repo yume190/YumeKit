@@ -1,6 +1,0 @@
-framework module YumeKit {
-    umbrella header "YumeKit.h"
-
-    export *
-    module * { export * }
-}
