@@ -63,6 +63,7 @@
 		A8E19C391E8249E1000DE567 /* StringExtension2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension2.swift; sourceTree = "<group>"; };
 		A8E19C3B1E8249E1000DE567 /* CellExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellExtension.swift; sourceTree = "<group>"; };
 		A8E19C3C1E8249E1000DE567 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		A8F8829B1EF26C4B0073495D /* YumeKit.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = YumeKit.modulemap; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +161,7 @@
 				A8E19C351E8249A4000DE567 /* Extension */,
 				A8E19C2F1E82488F000DE567 /* YumeKit.h */,
 				A8E19C301E82488F000DE567 /* Info.plist */,
+				A8F8829B1EF26C4B0073495D /* YumeKit.modulemap */,
 			);
 			path = YumeKit;
 			sourceTree = "<group>";
@@ -399,6 +401,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "$(SRCROOT)/$(PROJECT_NAME)/$(PROJECT_NAME).modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yume190.YumeKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -429,6 +432,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "$(SRCROOT)/$(PROJECT_NAME)/$(PROJECT_NAME).modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yume190.YumeKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
