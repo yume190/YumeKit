@@ -32,6 +32,7 @@
 		A8E19C401E8249E1000DE567 /* StringExtension2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E19C391E8249E1000DE567 /* StringExtension2.swift */; };
 		A8E19C421E8249E1000DE567 /* CellExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E19C3B1E8249E1000DE567 /* CellExtension.swift */; };
 		A8E19C431E8249E1000DE567 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E19C3C1E8249E1000DE567 /* UIImageExtension.swift */; };
+		A8F8828C1EF25E890073495D /* VerticalLabel.swift in Headers */ = {isa = PBXBuildFile; fileRef = A83699BD1E82760D00B6C006 /* VerticalLabel.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -183,6 +184,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8E19C311E82488F000DE567 /* YumeKit.h in Headers */,
+				A8F8828C1EF25E890073495D /* VerticalLabel.swift in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
