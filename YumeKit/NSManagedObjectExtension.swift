@@ -33,7 +33,7 @@ extension MOProtocol where Self:NSManagedObject {
 // MARK: Entity
 extension MOProtocol where Self:NSManagedObject {
     public final static func entityName() -> String {
-        return String(describing: type(of: self))
+        return String(describing: self)
     }
     
     public final static func createNewEntity(_ context: NSManagedObjectContext = mainMOC!) -> Self {
