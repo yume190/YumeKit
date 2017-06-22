@@ -13,41 +13,27 @@ import CoreData
 
 public protocol MOProtocol:class {}
 extension NSManagedObject:MOProtocol {}
+
+// MARK: Custom
 extension MOProtocol where Self:NSManagedObject {
-    
-//    convenience init(context: NSManagedObjectContext) {
-//        let fullClassName: String = NSStringFromClass(type(of: self))
-//        let classNameComponents: [String] = fullClassName.characters.split { $0 == "." }.map { String($0) }
-//        let name = classNameComponents.last!
-//        
-//        let entityDescription = NSEntityDescription.entity(forEntityName: name, in: context)!
-//        self.init(entity: entityDescription, insertInto: context)
-//    }
-    
-//    NSFetchRequestResult
-    public final static func custom(_ predicate: NSPredicate!,context: NSManagedObjectContext = mainMOC!,fetchRequestConfig:((NSFetchRequest<NSDictionary>) -> ())? = nil) -> [NSDictionary] {
+    public final static func custom(
+        _ predicate: NSPredicate!,
+        context: NSManagedObjectContext = mainMOC!,
+        fetchRequestConfig:((NSFetchRequest<NSDictionary>) -> ())? = nil) -> [NSDictionary] {
         
         let fetchRequest = NSFetchRequest<NSDictionary>(entityName: entityName())
         fetchRequest.predicate = predicate
         fetchRequest.resultType = NSFetchRequestResultType.dictionaryResultType
         fetchRequestConfig?(fetchRequest)
         
-        var results:[NSDictionary] = []
-        context.performAndWait { () -> Void in
-            do {
-                results = try context.fetch(fetchRequest)
-            } catch {
-                
-            }
-        }
-        
-        return results
+        return commonFetch(context: context, fetchRequest: fetchRequest)
     }
-    
+}
+
+// MARK: Entity
+extension MOProtocol where Self:NSManagedObject {
     public final static func entityName() -> String {
-        let fullClassName: String = NSStringFromClass(object_getClass(self))
-        let classNameComponents: [String] = fullClassName.characters.split { $0 == "." }.map { String($0) }
-        return classNameComponents.last!
+        return String(describing: type(of: self))
     }
     
     public final static func createNewEntity(_ context: NSManagedObjectContext = mainMOC!) -> Self {
@@ -55,46 +41,26 @@ extension MOProtocol where Self:NSManagedObject {
         let obj = Self(entity: entityDescription!, insertInto: context)
         return obj
     }
+}
+
+// MARK: Find
+extension MOProtocol where Self:NSManagedObject {
     
-    // MARK: 通用
+    // MARK: Find All
     public final static func findAllWithPredicate(
         _ predicate: NSPredicate!,
         includesPropertyValues: Bool = true,
         context: NSManagedObjectContext = mainMOC!,
-        fetchRequestConfig:((NSFetchRequest<Self>) -> ())? = nil,
-        completionHandler handler: ((NSError?) -> Void)! = nil) -> [Self] {
+        fetchRequestConfig:((NSFetchRequest<Self>) -> ())? = nil) -> [Self] {
         
-        let entityDescription = NSEntityDescription.entity(forEntityName: entityName(), in: context)
-        let fetchRequest = commonFetchRequest(predicate: predicate) { fetchRequest in
+        let fetchRequest = commonFetchRequest(predicate: predicate, context: context) { fetchRequest in
             fetchRequest.includesPropertyValues = includesPropertyValues
-            fetchRequest.entity = entityDescription
             fetchRequestConfig?(fetchRequest)
         }
         
-        var results:[Self] = []
-        context.performAndWait { () -> Void in
-            do {
-                results = try context.fetch(fetchRequest)
-            } catch {
-                
-            }
-        }
-        
-        return results
+        return commonFetch(context: context, fetchRequest: fetchRequest)
     }
     
-    // MARK: Delete
-    public final static func deleteAll(_ context: NSManagedObjectContext = mainMOC!) -> Void {
-        deleteAll(nil, context: context)
-    }
-    public final static func deleteAll(_ predicate: NSPredicate!, context: NSManagedObjectContext = mainMOC!) -> Void {
-        let results = findAllWithPredicate(predicate, includesPropertyValues: false, context: context, completionHandler: nil)
-        for result in results {
-            context.delete(result)
-        }
-    }
-    
-    // MARK: Find All
     public final static func findAll(_ context: NSManagedObjectContext = mainMOC!) -> [Self] {
         return findAllWithPredicate(nil, context: context)
     }
@@ -104,71 +70,95 @@ extension MOProtocol where Self:NSManagedObject {
         return findAllWithPredicate(predicate, context: context)
     }
     
-    
-    private final static func commonFetchRequest(predicate:NSPredicate?,customSetting:((NSFetchRequest<Self>) -> ())? = nil) -> NSFetchRequest<Self> {
-        let fetchRequest = NSFetchRequest<Self>(entityName: entityName())
-        fetchRequest.predicate = predicate
-        customSetting?(fetchRequest)
-        return fetchRequest
-    }
-    
     // MARK: Find One
-    public final static func findFirst(_ predicate: NSPredicate!, context: NSManagedObjectContext = mainMOC!, handler: ((NSError?) -> Void)! = nil) -> Self? {
-        let entityDescription = NSEntityDescription.entity(forEntityName: entityName(), in: context)
-        let fetchRequest = commonFetchRequest(predicate: predicate) { fetchRequest in
+    public final static func findFirst(_ predicate: NSPredicate!, context: NSManagedObjectContext = mainMOC!) -> Self? {
+        let fetchRequest = commonFetchRequest(predicate: predicate, context: context) { fetchRequest in
             fetchRequest.fetchLimit = 1
-            fetchRequest.entity = entityDescription
         }
         
-        var results:[Self] = []
-        context.performAndWait { () -> Void in
-            do {
-                results = try context.fetch(fetchRequest)
-            } catch {
-                
-            }
-        }
-        return results.first
+        return commonFetch(context: context, fetchRequest: fetchRequest).first
     }
     
-    public final static func findFirstOrCreateWithPredicate(_ predicate: NSPredicate!, context: NSManagedObjectContext = mainMOC!, handler: ((NSError?) -> Void)! = nil) -> Self {
-
-        if let first = findFirst(predicate, context: context, handler: handler) {
+    public final static func findFirstOrCreateWithPredicate(_ predicate: NSPredicate!, context: NSManagedObjectContext = mainMOC!) -> Self {
+        if let first = findFirst(predicate, context: context) {
             return first
         }
         
         return createNewEntity(context)
     }
     
-    public final static func findFirstOrCreateWithAttribute(_ attribute: String!, value: Any!, context: NSManagedObjectContext = mainMOC!, handler: ((NSError?) -> Void)! = nil) -> Self {
+    public final static func findFirstOrCreateWithAttribute(_ attribute: String!, value: Any!, context: NSManagedObjectContext = mainMOC!) -> Self {
         let predicate = predicateBuilder(attribute, value: value, predicateOperator: .Equal)
-        return findFirstOrCreateWithPredicate(predicate, context: context, handler: handler)
+        return findFirstOrCreateWithPredicate(predicate, context: context)
+    }
+}
+
+// MARK: Delete
+extension MOProtocol where Self:NSManagedObject {
+    public final static func deleteAll(_ context: NSManagedObjectContext = mainMOC!) -> Void {
+        deleteAll(nil, context: context)
     }
     
-    // MARK: Yume Make
-    public final static func batchFetch(_ limit:Int = 0,offset:Int = 0,predicate: NSPredicate!,sorter:[NSSortDescriptor]!,context: NSManagedObjectContext,completionHandler handler: ((NSError?) -> Void)! = nil) -> [Self] {
-        
-        let entityDescription = NSEntityDescription.entity(forEntityName: entityName(), in: context)
-        let fetchRequest = commonFetchRequest(predicate: predicate) { fetchRequest in
-            fetchRequest.sortDescriptors = sorter
-            fetchRequest.entity = entityDescription
-            fetchRequest.fetchLimit = limit
-            fetchRequest.fetchOffset = offset
+    public final static func deleteAll(_ predicate: NSPredicate!, context: NSManagedObjectContext = mainMOC!) -> Void {
+        let results = findAllWithPredicate(predicate, includesPropertyValues: false, context: context)
+        for result in results {
+            context.delete(result)
         }
+    }
+}
+
+// MARK: 通用
+extension MOProtocol where Self:NSManagedObject {
+    fileprivate final static func commonFetch<T:NSFetchRequestResult>(context: NSManagedObjectContext,fetchRequest:NSFetchRequest<T>) -> [T] {
+        var results:[T] = []
         
-        var results:[Self] = []
         context.performAndWait { () -> Void in
             do {
                 results = try context.fetch(fetchRequest)
             } catch {
-                
+                print(error)
             }
         }
+        
         return results
     }
     
+    fileprivate final static func commonFetchRequest(
+        predicate:NSPredicate?,
+        context: NSManagedObjectContext,
+        customSetting:((NSFetchRequest<Self>) -> ())? = nil) -> NSFetchRequest<Self> {
+        let fetchRequest = NSFetchRequest<Self>(entityName: entityName())
+        fetchRequest.predicate = predicate
+        fetchRequest.entity = NSEntityDescription.entity(forEntityName: entityName(), in: context)
+        customSetting?(fetchRequest)
+        return fetchRequest
+    }
+
+    // 打算作成 generator 式，可 next
+//    // MARK: Yume Make
+//    public final static func batchFetch(_ limit:Int = 0,offset:Int = 0,predicate: NSPredicate!,sorter:[NSSortDescriptor]!,context: NSManagedObjectContext) -> [Self] {
+//        
+//        let entityDescription = NSEntityDescription.entity(forEntityName: entityName(), in: context)
+//        let fetchRequest = commonFetchRequest(predicate: predicate) { fetchRequest in
+//            fetchRequest.sortDescriptors = sorter
+//            fetchRequest.entity = entityDescription
+//            fetchRequest.fetchLimit = limit
+//            fetchRequest.fetchOffset = offset
+//        }
+//        
+//        var results:[Self] = []
+//        context.performAndWait { () -> Void in
+//            do {
+//                results = try context.fetch(fetchRequest)
+//            } catch {
+//                print(error)
+//            }
+//        }
+//        return results
+//    }
+    
     public final static func count(_ context: NSManagedObjectContext = mainMOC!, predicate : NSPredicate? = nil) throws -> Int {
-        let fetchRequest = commonFetchRequest(predicate: predicate) { fetchRequest in
+        let fetchRequest = commonFetchRequest(predicate: predicate, context: context) { fetchRequest in
             fetchRequest.includesPropertyValues = false
             fetchRequest.includesSubentities = false
             fetchRequest.propertiesToFetch = []
@@ -314,10 +304,4 @@ extension MOProtocol where Self:NSManagedObject {
 //        var results = avg(context, fieldName: [fieldName], predicate: predicate, handler: handler)
 //        return results.isEmpty ? 0 : results[0];
 //    }
-//}
-//
-//// MARK: Yume Make
-//
-//public extension NSManagedObject {
-//    
 //}
