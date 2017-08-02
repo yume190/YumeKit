@@ -26,7 +26,7 @@ public enum Rest {
                 guard let _port = port else { return host }
                 return "\(host):\(_port)"
             case .full(let host, let port, let path):
-                guard let _port = port else { return host }
+                guard let _port = port else { return host + path }
                 return "\(host):\(_port)\(path)"
             }
         }
