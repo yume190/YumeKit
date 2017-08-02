@@ -12,7 +12,7 @@ public enum Rest {
     case host(host:String, port:Int?)
     case full(host:String, port:Int? ,path:String)
     
-    static func + (rest:Rest,subPath:String) -> Rest {
+    public static func + (rest:Rest,subPath:String) -> Rest {
         switch rest {
         case host(let host, let port): return .full(host: host, port: port, path: subPath)
         case full(let host, let port, let path): return .full(host: host, port: port, path: path + subPath)
