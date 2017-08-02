@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum Rest {
+public enum Rest {
     case host(host:String, port:Int?)
     case full(host:String, port:Int? ,path:String)
     
@@ -19,7 +19,7 @@ enum Rest {
         }
     }
     
-    var url:String {
+    public var url:String {
         get{
             switch self {
             case .host(let host, let port):

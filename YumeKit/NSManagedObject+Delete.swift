@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 extension NSManagedObject {
-    func delete() {
+    public func delete() {
         self.managedObjectContext?.delete(self)
     }
 }

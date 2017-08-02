@@ -11,23 +11,23 @@
 
 import Foundation
 
-protocol YumeSerializable {
+public protocol YumeSerializable {
     func archive() -> Data
     static func archive(serializable:Self) -> Data
     static func unarchive(data:Data) -> Self?
 }
 
 extension YumeSerializable {
-    func archive() -> Data {
+    public func archive() -> Data {
         return Self.archive(serializable: self)
     }
     
-    static func archive(serializable:Self) -> Data {
+    public static func archive(serializable:Self) -> Data {
         var _serializable = serializable
         return Data(bytes: &_serializable, count: MemoryLayout<Self>.stride)
     }
     
-    static func unarchive(data:Data) -> Self? {
+    public static func unarchive(data:Data) -> Self? {
         guard data.count == MemoryLayout<Self>.stride else {
             return nil
         }
