@@ -26,6 +26,12 @@
 		A83699B51E8255E300B6C006 /* JSONDecodeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A83699B21E8255E300B6C006 /* JSONDecodeKit.framework */; };
 		A83699B91E8269AD00B6C006 /* Updater.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83699B81E8269AD00B6C006 /* Updater.swift */; };
 		A83699BE1E82760D00B6C006 /* VerticalLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83699BD1E82760D00B6C006 /* VerticalLabel.swift */; };
+		A8756E361F317CFD00DC00EC /* YumeSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8756E351F317CFD00DC00EC /* YumeSerializable.swift */; };
+		A8756E391F317E5800DC00EC /* NSManagedObject+Delete.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8756E381F317E5800DC00EC /* NSManagedObject+Delete.swift */; };
+		A8756E3B1F31822500DC00EC /* DictionaryAble.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8756E3A1F31822500DC00EC /* DictionaryAble.swift */; };
+		A8756E3D1F31827900DC00EC /* Rest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8756E3C1F31827900DC00EC /* Rest.swift */; };
+		A8756E3F1F3183B000DC00EC /* Monoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8756E3E1F3183B000DC00EC /* Monoid.swift */; };
+		A8756E411F3184DF00DC00EC /* ContinuingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8756E401F3184DF00DC00EC /* ContinuingData.swift */; };
 		A8E19C311E82488F000DE567 /* YumeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A8E19C2F1E82488F000DE567 /* YumeKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A8E19C3D1E8249E1000DE567 /* NSExpressionDescriptionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E19C361E8249E1000DE567 /* NSExpressionDescriptionExtension.swift */; };
 		A8E19C3F1E8249E1000DE567 /* NSNotificationCenterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E19C381E8249E1000DE567 /* NSNotificationCenterExtension.swift */; };
@@ -54,6 +60,12 @@
 		A83699B21E8255E300B6C006 /* JSONDecodeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JSONDecodeKit.framework; path = Carthage/Build/iOS/JSONDecodeKit.framework; sourceTree = "<group>"; };
 		A83699B81E8269AD00B6C006 /* Updater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Updater.swift; sourceTree = "<group>"; };
 		A83699BD1E82760D00B6C006 /* VerticalLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalLabel.swift; sourceTree = "<group>"; };
+		A8756E351F317CFD00DC00EC /* YumeSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YumeSerializable.swift; sourceTree = "<group>"; };
+		A8756E381F317E5800DC00EC /* NSManagedObject+Delete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Delete.swift"; sourceTree = "<group>"; };
+		A8756E3A1F31822500DC00EC /* DictionaryAble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryAble.swift; sourceTree = "<group>"; };
+		A8756E3C1F31827900DC00EC /* Rest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rest.swift; sourceTree = "<group>"; };
+		A8756E3E1F3183B000DC00EC /* Monoid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Monoid.swift; sourceTree = "<group>"; };
+		A8756E401F3184DF00DC00EC /* ContinuingData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContinuingData.swift; sourceTree = "<group>"; };
 		A8E19C2D1E82488F000DE567 /* YumeKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YumeKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8E19C2F1E82488F000DE567 /* YumeKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YumeKit.h; sourceTree = "<group>"; };
 		A8E19C301E82488F000DE567 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -110,6 +122,11 @@
 			children = (
 				A83699B81E8269AD00B6C006 /* Updater.swift */,
 				A83699AC1E82523400B6C006 /* Alamofire+JSONDecodeKIT.swift */,
+				A8756E351F317CFD00DC00EC /* YumeSerializable.swift */,
+				A8756E3A1F31822500DC00EC /* DictionaryAble.swift */,
+				A8756E3C1F31827900DC00EC /* Rest.swift */,
+				A8756E3E1F3183B000DC00EC /* Monoid.swift */,
+				A8756E401F3184DF00DC00EC /* ContinuingData.swift */,
 			);
 			name = Kit;
 			sourceTree = "<group>";
@@ -130,6 +147,15 @@
 				A83699BD1E82760D00B6C006 /* VerticalLabel.swift */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		A8756E371F317E3F00DC00EC /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				A836998B1E8251C800B6C006 /* SuperStack */,
+				A8756E381F317E5800DC00EC /* NSManagedObject+Delete.swift */,
+			);
+			name = CoreData;
 			sourceTree = "<group>";
 		};
 		A8D3234C1E4817BD00EA3445 = {
@@ -155,7 +181,7 @@
 				A83699BC1E8275FD00B6C006 /* View */,
 				A83699AB1E82522A00B6C006 /* Kit */,
 				A836999A1E82520200B6C006 /* Macro */,
-				A836998B1E8251C800B6C006 /* SuperStack */,
+				A8756E371F317E3F00DC00EC /* CoreData */,
 				A8E19C351E8249A4000DE567 /* Extension */,
 				A8E19C2F1E82488F000DE567 /* YumeKit.h */,
 				A8E19C301E82488F000DE567 /* Info.plist */,
@@ -259,10 +285,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8756E391F317E5800DC00EC /* NSManagedObject+Delete.swift in Sources */,
 				A83699A71E82520F00B6C006 /* FPMacro.swift in Sources */,
 				A8E19C3D1E8249E1000DE567 /* NSExpressionDescriptionExtension.swift in Sources */,
+				A8756E3D1F31827900DC00EC /* Rest.swift in Sources */,
 				A8E19C431E8249E1000DE567 /* UIImageExtension.swift in Sources */,
 				A8E19C3F1E8249E1000DE567 /* NSNotificationCenterExtension.swift in Sources */,
+				A8756E361F317CFD00DC00EC /* YumeSerializable.swift in Sources */,
 				A83699931E8251E400B6C006 /* NSFetchedResultsControllerExtension.swift in Sources */,
 				A83699A91E82520F00B6C006 /* HtmlMacro.swift in Sources */,
 				A83699A31E82520F00B6C006 /* Macro.swift in Sources */,
@@ -270,8 +299,10 @@
 				A83699A81E82520F00B6C006 /* TimeMacro.swift in Sources */,
 				A83699961E8251E400B6C006 /* SuperCoreDataStack.swift in Sources */,
 				A83699971E8251E400B6C006 /* SuperFetchedResultsControllerDelegate.swift in Sources */,
+				A8756E411F3184DF00DC00EC /* ContinuingData.swift in Sources */,
 				A83699B91E8269AD00B6C006 /* Updater.swift in Sources */,
 				A83699951E8251E400B6C006 /* NSPredicateExtension.swift in Sources */,
+				A8756E3B1F31822500DC00EC /* DictionaryAble.swift in Sources */,
 				A83699991E8251E400B6C006 /* FetchRequestExtension.swift in Sources */,
 				A8E19C401E8249E1000DE567 /* StringExtension2.swift in Sources */,
 				A83699A41E82520F00B6C006 /* RegularMacro.swift in Sources */,
@@ -279,6 +310,7 @@
 				A83699941E8251E400B6C006 /* NSManagedObjectExtension.swift in Sources */,
 				A83699AD1E82523400B6C006 /* Alamofire+JSONDecodeKIT.swift in Sources */,
 				A8E19C421E8249E1000DE567 /* CellExtension.swift in Sources */,
+				A8756E3F1F3183B000DC00EC /* Monoid.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
