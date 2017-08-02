@@ -31,13 +31,13 @@ public enum ContinuingData<Element:Hashable> {
         return nil
     }
     
-    public static func findContinousData(array:[Element], middle: Element) -> ContinousData<Element> {
+    public static func findContinousData(array:[Element], middle: Element) -> ContinuingData<Element> {
         guard let middleIndex = array.index(of: middle) else {
             return .none
         }
         
-        let _next = ContinousData.findNext(array: array, middleIndex: middleIndex)
-        let _previous = ContinousData.findPrevious(array: array, middleIndex: middleIndex)
+        let _next = ContinuingData.findNext(array: array, middleIndex: middleIndex)
+        let _previous = ContinuingData.findPrevious(array: array, middleIndex: middleIndex)
         
         if let previous = _previous, _next == nil {
             return .pm(previous: previous, middle: middle)
