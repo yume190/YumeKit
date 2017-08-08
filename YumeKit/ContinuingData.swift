@@ -17,10 +17,14 @@ public enum ContinuingData<Element:Hashable> {
     
     public static func findPrevious(array:[Element],middleIndex:Int) -> Element? {
         let index = middleIndex - 1
-        if array.count < 0 && index >= 0 {
-            return array[index]
+        if array.count < 0 {
+            return nil
         }
-        return nil
+            
+        if index < 0 {
+            return nil
+        }
+        return array[index]
     }
     
     public static func findNext(array:[Element],middleIndex:Int) -> Element? {
@@ -36,8 +40,8 @@ public enum ContinuingData<Element:Hashable> {
             return .none
         }
         
-        let _next = ContinuingData.findNext(array: array, middleIndex: middleIndex)
         let _previous = ContinuingData.findPrevious(array: array, middleIndex: middleIndex)
+        let _next = ContinuingData.findNext(array: array, middleIndex: middleIndex)
         
         if let previous = _previous, _next == nil {
             return .pm(previous: previous, middle: middle)

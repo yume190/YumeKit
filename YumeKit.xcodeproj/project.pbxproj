@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A8361CB81F396F6A00A71D22 /* YumeKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8361CB71F396F6A00A71D22 /* YumeKitTests.swift */; };
+		A8361CBA1F396F6A00A71D22 /* YumeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8E19C2D1E82488F000DE567 /* YumeKit.framework */; };
 		A83699931E8251E400B6C006 /* NSFetchedResultsControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A836998C1E8251E400B6C006 /* NSFetchedResultsControllerExtension.swift */; };
 		A83699941E8251E400B6C006 /* NSManagedObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A836998D1E8251E400B6C006 /* NSManagedObjectExtension.swift */; };
 		A83699951E8251E400B6C006 /* NSPredicateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A836998E1E8251E400B6C006 /* NSPredicateExtension.swift */; };
@@ -40,7 +42,20 @@
 		A8E19C431E8249E1000DE567 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E19C3C1E8249E1000DE567 /* UIImageExtension.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		A8361CBB1F396F6A00A71D22 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A8D3234D1E4817BD00EA3445 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A8E19C2C1E82488F000DE567;
+			remoteInfo = YumeKit;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		A8361CB51F396F6A00A71D22 /* YumeKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YumeKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8361CB71F396F6A00A71D22 /* YumeKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YumeKitTests.swift; sourceTree = "<group>"; };
+		A8361CB91F396F6A00A71D22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A836998C1E8251E400B6C006 /* NSFetchedResultsControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSFetchedResultsControllerExtension.swift; sourceTree = "<group>"; };
 		A836998D1E8251E400B6C006 /* NSManagedObjectExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSManagedObjectExtension.swift; sourceTree = "<group>"; };
 		A836998E1E8251E400B6C006 /* NSPredicateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSPredicateExtension.swift; sourceTree = "<group>"; };
@@ -77,6 +92,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A8361CB21F396F6A00A71D22 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A8361CBA1F396F6A00A71D22 /* YumeKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A8E19C291E82488F000DE567 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -90,6 +113,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A8361CB61F396F6A00A71D22 /* YumeKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				A8361CB71F396F6A00A71D22 /* YumeKitTests.swift */,
+				A8361CB91F396F6A00A71D22 /* Info.plist */,
+			);
+			path = YumeKitTests;
+			sourceTree = "<group>";
+		};
 		A836998B1E8251C800B6C006 /* SuperStack */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				A8E19C2E1E82488F000DE567 /* YumeKit */,
+				A8361CB61F396F6A00A71D22 /* YumeKitTests */,
 				A8D323561E4817BD00EA3445 /* Products */,
 				A83699AF1E8255E300B6C006 /* Frameworks */,
 			);
@@ -171,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				A8E19C2D1E82488F000DE567 /* YumeKit.framework */,
+				A8361CB51F396F6A00A71D22 /* YumeKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -215,6 +249,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		A8361CB41F396F6A00A71D22 /* YumeKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A8361CBF1F396F6A00A71D22 /* Build configuration list for PBXNativeTarget "YumeKitTests" */;
+			buildPhases = (
+				A8361CB11F396F6A00A71D22 /* Sources */,
+				A8361CB21F396F6A00A71D22 /* Frameworks */,
+				A8361CB31F396F6A00A71D22 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A8361CBC1F396F6A00A71D22 /* PBXTargetDependency */,
+			);
+			name = YumeKitTests;
+			productName = YumeKitTests;
+			productReference = A8361CB51F396F6A00A71D22 /* YumeKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		A8E19C2C1E82488F000DE567 /* YumeKit */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A8E19C321E82488F000DE567 /* Build configuration list for PBXNativeTarget "YumeKit" */;
@@ -223,6 +275,7 @@
 				A8E19C291E82488F000DE567 /* Frameworks */,
 				A8E19C2A1E82488F000DE567 /* Headers */,
 				A8E19C2B1E82488F000DE567 /* Resources */,
+				A8361CC11F398A2100A71D22 /* Carthage */,
 			);
 			buildRules = (
 			);
@@ -239,10 +292,15 @@
 		A8D3234D1E4817BD00EA3445 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0820;
+				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = Yume;
 				TargetAttributes = {
+					A8361CB41F396F6A00A71D22 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 37MR9UKGT4;
+						ProvisioningStyle = Automatic;
+					};
 					A8E19C2C1E82488F000DE567 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 37MR9UKGT4;
@@ -265,11 +323,19 @@
 			projectRoot = "";
 			targets = (
 				A8E19C2C1E82488F000DE567 /* YumeKit */,
+				A8361CB41F396F6A00A71D22 /* YumeKitTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		A8361CB31F396F6A00A71D22 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A8E19C2B1E82488F000DE567 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -280,7 +346,35 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A8361CC11F398A2100A71D22 /* Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/CryptoSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/JSONDecodeKit.framework",
+			);
+			name = Carthage;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		A8361CB11F396F6A00A71D22 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A8361CB81F396F6A00A71D22 /* YumeKitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A8E19C281E82488F000DE567 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -316,7 +410,43 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		A8361CBC1F396F6A00A71D22 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A8E19C2C1E82488F000DE567 /* YumeKit */;
+			targetProxy = A8361CBB1F396F6A00A71D22 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		A8361CBD1F396F6A00A71D22 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				DEVELOPMENT_TEAM = 37MR9UKGT4;
+				INFOPLIST_FILE = YumeKitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yume190.YumeKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		A8361CBE1F396F6A00A71D22 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				DEVELOPMENT_TEAM = 37MR9UKGT4;
+				INFOPLIST_FILE = YumeKitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yume190.YumeKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 		A8D323651E4817BD00EA3445 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -474,6 +604,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A8361CBF1F396F6A00A71D22 /* Build configuration list for PBXNativeTarget "YumeKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A8361CBD1F396F6A00A71D22 /* Debug */,
+				A8361CBE1F396F6A00A71D22 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		A8D323501E4817BD00EA3445 /* Build configuration list for PBXProject "YumeKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
