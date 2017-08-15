@@ -37,10 +37,6 @@ fileprivate struct SuperCoreDataStackConfig {
 
 open class SuperCoreDataStack {
     
-    fileprivate let resourcePrefix:String
-    fileprivate let storeType:String
-    fileprivate let stackName:String
-    
     public enum CoreDataType {
         case sql
         case memory
@@ -70,57 +66,71 @@ open class SuperCoreDataStack {
         }
     }
     
+    fileprivate let resourcePrefix:String
+    fileprivate let stackName:String
+    
     fileprivate let storeName:String
     fileprivate let bigUpdateStoreName:String
     fileprivate let storeNameURL:URL
     fileprivate let bigUpdateStoreNameURL:URL
+    fileprivate let coordinator:NSPersistentStoreCoordinator
+    fileprivate let bigUpdateCoordinator:NSPersistentStoreCoordinator
     fileprivate let userDocumentURL:URL
-    fileprivate let modelURL:URL
     init?(storeType: String,stackName:String,resourcePrefix:String = "") {
-        guard
-        let userDocumentURL:URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last,
-        let modelURL = Bundle.main.url(forResource: stackName, withExtension: "momd")
-        else {
-            //    let url = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier(groupName)
-            return nil
-        }
         self.stackName = stackName
-        self.storeType = storeType
         self.resourcePrefix = resourcePrefix
         
+        guard
+        let userDocumentURL:URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last
+        else {
+            return nil
+        }
+        self.userDocumentURL = userDocumentURL
         self.storeName = stackName + ".sqlite"
         self.bigUpdateStoreName = SuperCoreDataStackConfig.bigUpdatePrefix + storeName
         self.storeNameURL = userDocumentURL.appendingPathComponent(storeName)
         self.bigUpdateStoreNameURL = userDocumentURL.appendingPathComponent(bigUpdateStoreName)
-        self.userDocumentURL = userDocumentURL
-        self.modelURL = modelURL
+        
+        guard 
+        let momURL = Bundle.main.url(forResource: stackName, withExtension: "momd"),
+        let mom = NSManagedObjectModel(contentsOf: momURL)
+        else {
+            return nil
+        }
+        
+        guard
+        let coordinator = SuperCoreDataStack.makeCoordinator(mom: mom, storeType: storeType, url: self.storeNameURL),
+        let bigUpdateCoordinator = SuperCoreDataStack.makeCoordinator(mom: mom, storeType: storeType, url: self.bigUpdateStoreNameURL)
+        else {
+            return nil
+        }
+        self.coordinator = coordinator
+        self.bigUpdateCoordinator = bigUpdateCoordinator
         
         self.checkAndCopyDatabaseFromProject()
         self.updatingDatabase()
         setSuperStackMOC(main: self.managedObjectContext, background: self.backgroundContext)
-    }
-    
-    deinit{
-        managedObjectContext = nil
-        backgroundContext = nil
-        bigUpdateBackgroundContext = nil
-        bigUpdateManagedObjectContext = nil
+        NotificationCenter.default.addObserver(
+            self.managedObjectContext,
+            selector: #selector(self.contextDidSaveContext(notification:)),
+            name: NSNotification.Name.NSManagedObjectContextDidSave,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self.backgroundContext,
+            selector: #selector(self.contextDidSaveContext(notification:)),
+            name: NSNotification.Name.NSManagedObjectContextDidSave,
+            object: nil
+        )
     }
     
     // MARK: - Core Data stack
     
-    // MARK: MOM
-    lazy var managedObjectModel: NSManagedObjectModel? = NSManagedObjectModel(contentsOf: self.modelURL)
-    
     // MARK: Coordinator
-    private func normalCoordinator(_ url:URL) -> NSPersistentStoreCoordinator? {
-        guard let managedObjectModel = self.managedObjectModel else {
-            return nil
-        }
-        
-        let coordinator: NSPersistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
+    private class func makeCoordinator(mom:NSManagedObjectModel,storeType:String, url:URL) -> NSPersistentStoreCoordinator? {
+        let coordinator: NSPersistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: mom)
         do {
-            try coordinator.addPersistentStore(ofType: self.storeType, configurationName: nil, at: url, options: SuperCoreDataStackConfig.stackOption)
+            try coordinator.addPersistentStore(ofType: storeType, configurationName: nil, at: url, options: SuperCoreDataStackConfig.stackOption)
         } catch {
             return nil
         }
@@ -128,35 +138,53 @@ open class SuperCoreDataStack {
     }
     
     // MARK: MOC
-    open lazy var managedObjectContext: NSManagedObjectContext? =
-        self.createMainMOC(self.normalCoordinator(self.storeNameURL))
-    open lazy var backgroundContext: NSManagedObjectContext? =
-        self.createBackgroundMOC(self.normalCoordinator(self.storeNameURL))
-    open lazy var bigUpdateManagedObjectContext: NSManagedObjectContext? =
-        self.createMainMOC(self.normalCoordinator(self.bigUpdateStoreNameURL))
-    open lazy var bigUpdateBackgroundContext: NSManagedObjectContext? =
-        self.createBackgroundMOC(self.normalCoordinator(self.bigUpdateStoreNameURL))
+    open lazy var managedObjectContext: NSManagedObjectContext =
+        self.createMainMOC(self.coordinator)
+    open lazy var backgroundContext: NSManagedObjectContext =
+        self.createBackgroundMOC(self.coordinator)
+    open lazy var bigUpdateManagedObjectContext: NSManagedObjectContext =
+        self.createMainMOC(self.bigUpdateCoordinator)
+    open lazy var bigUpdateBackgroundContext: NSManagedObjectContext =
+        self.createBackgroundMOC(self.bigUpdateCoordinator)
     
     // MARK: UTIL
-    func createMainMOC(_ coordinator:NSPersistentStoreCoordinator?) -> NSManagedObjectContext? {
-        guard let coordinator = coordinator else {
-            return nil
-        }
+    func createMainMOC(_ coordinator:NSPersistentStoreCoordinator) -> NSManagedObjectContext {
         let managedObjectContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = coordinator
         managedObjectContext.mergePolicy = NSRollbackMergePolicy
         return managedObjectContext
     }
     
-    private func createBackgroundMOC(_ coordinator:NSPersistentStoreCoordinator?) -> NSManagedObjectContext? {
-        guard let coordinator = coordinator else {
-            return nil
-        }
+    private func createBackgroundMOC(_ coordinator:NSPersistentStoreCoordinator) -> NSManagedObjectContext {
         let managedObjectContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.privateQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = coordinator
         managedObjectContext.mergePolicy = NSOverwriteMergePolicy
         managedObjectContext.undoManager = nil
         return managedObjectContext
+    }
+    
+    @objc func contextDidSaveContext(notification: Notification) {
+        guard let sender = notification.object as? NSManagedObjectContext else {return}
+        
+        if sender === mainMOC {
+//            NSLog("******** Saved main Context in this thread")
+            backgroundMOC?.perform{
+                backgroundMOC?.mergeChanges(fromContextDidSave: notification)
+            }
+        } else if sender === backgroundMOC {
+//            NSLog("******** Saved background Context in this thread")
+            mainMOC?.perform{
+                mainMOC?.mergeChanges(fromContextDidSave: notification)
+            }
+        } else {
+//            NSLog("******** Saved Context in other thread")
+            mainMOC?.perform{
+                mainMOC?.mergeChanges(fromContextDidSave: notification)
+            }
+            backgroundMOC?.perform{
+                backgroundMOC?.mergeChanges(fromContextDidSave: notification)
+            }
+        }
     }
 }
 
