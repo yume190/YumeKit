@@ -140,10 +140,6 @@ open class SuperCoreDataStack {
         self.createMainMOC(self.coordinator)
     open lazy var backgroundContext: NSManagedObjectContext =
         self.createBackgroundMOC(self.coordinator)
-    open lazy var bigUpdateManagedObjectContext: NSManagedObjectContext =
-        self.createMainMOC(self.bigUpdateCoordinator)
-    open lazy var bigUpdateBackgroundContext: NSManagedObjectContext =
-        self.createBackgroundMOC(self.bigUpdateCoordinator)
     
     // MARK: UTIL
     func createMainMOC(_ coordinator:NSPersistentStoreCoordinator) -> NSManagedObjectContext {
