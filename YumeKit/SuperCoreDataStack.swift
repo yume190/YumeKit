@@ -74,7 +74,7 @@ open class SuperCoreDataStack {
     fileprivate let storeNameURL:URL
     fileprivate let bigUpdateStoreNameURL:URL
     fileprivate let coordinator:NSPersistentStoreCoordinator
-    fileprivate let bigUpdateCoordinator:NSPersistentStoreCoordinator
+//    fileprivate let bigUpdateCoordinator:NSPersistentStoreCoordinator
     fileprivate let userDocumentURL:URL
     init?(storeType: String,stackName:String,resourcePrefix:String = "") {
         self.stackName = stackName
@@ -99,13 +99,11 @@ open class SuperCoreDataStack {
         }
         
         guard
-        let coordinator = SuperCoreDataStack.makeCoordinator(mom: mom, storeType: storeType, url: self.storeNameURL),
-        let bigUpdateCoordinator = SuperCoreDataStack.makeCoordinator(mom: mom, storeType: storeType, url: self.bigUpdateStoreNameURL)
+        let coordinator = SuperCoreDataStack.makeCoordinator(mom: mom, storeType: storeType, url: self.storeNameURL)
         else {
             return nil
         }
         self.coordinator = coordinator
-        self.bigUpdateCoordinator = bigUpdateCoordinator
         
         self.checkAndCopyDatabaseFromProject()
         self.updatingDatabase()
