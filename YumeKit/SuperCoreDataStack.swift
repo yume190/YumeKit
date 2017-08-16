@@ -74,16 +74,16 @@ open class SuperCoreDataStack {
     fileprivate let storeNameURL:URL
     fileprivate let bigUpdateStoreNameURL:URL
     fileprivate let coordinator:NSPersistentStoreCoordinator
-//    fileprivate let bigUpdateCoordinator:NSPersistentStoreCoordinator
+    //    fileprivate let bigUpdateCoordinator:NSPersistentStoreCoordinator
     fileprivate let userDocumentURL:URL
     init?(storeType: String,stackName:String,resourcePrefix:String = "") {
         self.stackName = stackName
         self.resourcePrefix = resourcePrefix
         
         guard
-        let userDocumentURL:URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last
-        else {
-            return nil
+            let userDocumentURL:URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last
+            else {
+                return nil
         }
         self.userDocumentURL = userDocumentURL
         self.storeName = stackName + ".sqlite"
@@ -91,17 +91,17 @@ open class SuperCoreDataStack {
         self.storeNameURL = userDocumentURL.appendingPathComponent(storeName)
         self.bigUpdateStoreNameURL = userDocumentURL.appendingPathComponent(bigUpdateStoreName)
         
-        guard 
-        let momURL = Bundle.main.url(forResource: stackName, withExtension: "momd"),
-        let mom = NSManagedObjectModel(contentsOf: momURL)
-        else {
-            return nil
+        guard
+            let momURL = Bundle.main.url(forResource: stackName, withExtension: "momd"),
+            let mom = NSManagedObjectModel(contentsOf: momURL)
+            else {
+                return nil
         }
         
         guard
-        let coordinator = SuperCoreDataStack.makeCoordinator(mom: mom, storeType: storeType, url: self.storeNameURL)
-        else {
-            return nil
+            let coordinator = SuperCoreDataStack.makeCoordinator(mom: mom, storeType: storeType, url: self.storeNameURL)
+            else {
+                return nil
         }
         self.coordinator = coordinator
         
@@ -110,13 +110,13 @@ open class SuperCoreDataStack {
         setSuperStackMOC(main: self.managedObjectContext, background: self.backgroundContext)
         NotificationCenter.default.addObserver(
             self.managedObjectContext,
-            selector: #selector(self.contextDidSaveContext(notification:)),
+            selector: #selector(NSManagedObjectContext.contextDidSaveContext(notification:)),
             name: NSNotification.Name.NSManagedObjectContextDidSave,
             object: nil
         )
         NotificationCenter.default.addObserver(
             self.backgroundContext,
-            selector: #selector(self.contextDidSaveContext(notification:)),
+            selector: #selector(NSManagedObjectContext.contextDidSaveContext(notification:)),
             name: NSNotification.Name.NSManagedObjectContextDidSave,
             object: nil
         )
@@ -156,22 +156,25 @@ open class SuperCoreDataStack {
         managedObjectContext.undoManager = nil
         return managedObjectContext
     }
-    
+}
+
+extension NSManagedObjectContext {
     @objc func contextDidSaveContext(notification: Notification) {
+        print("moc save")
         guard let sender = notification.object as? NSManagedObjectContext else {return}
         
         if sender === mainMOC {
-//            NSLog("******** Saved main Context in this thread")
+            //            NSLog("******** Saved main Context in this thread")
             backgroundMOC?.perform{
                 backgroundMOC?.mergeChanges(fromContextDidSave: notification)
             }
         } else if sender === backgroundMOC {
-//            NSLog("******** Saved background Context in this thread")
+            //            NSLog("******** Saved background Context in this thread")
             mainMOC?.perform{
                 mainMOC?.mergeChanges(fromContextDidSave: notification)
             }
         } else {
-//            NSLog("******** Saved Context in other thread")
+            //            NSLog("******** Saved Context in other thread")
             mainMOC?.perform{
                 mainMOC?.mergeChanges(fromContextDidSave: notification)
             }

@@ -256,6 +256,7 @@
 				A8361CB11F396F6A00A71D22 /* Sources */,
 				A8361CB21F396F6A00A71D22 /* Frameworks */,
 				A8361CB31F396F6A00A71D22 /* Resources */,
+				A8C8D6711F4427530042D6DD /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -358,6 +359,22 @@
 				"$(SRCROOT)/Carthage/Build/iOS/JSONDecodeKit.framework",
 			);
 			name = Carthage;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+		A8C8D6711F4427530042D6DD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/CryptoSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/JSONDecodeKit.framework",
+			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
