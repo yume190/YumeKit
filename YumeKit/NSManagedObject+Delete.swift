@@ -1,16 +1,17 @@
+////
+////  NSManagedObject+Delete.swift
+////  YumeKit
+////
+////  Created by Yume on 2017/8/2.
+////  Copyright © 2017年 Yume. All rights reserved.
+////
 //
-//  NSManagedObject+Delete.swift
-//  YumeKit
+//import Foundation
+//import CoreData
 //
-//  Created by Yume on 2017/8/2.
-//  Copyright © 2017年 Yume. All rights reserved.
+//extension NSManagedObject {
+//    public func delete() {
+//        self.managedObjectContext?.delete(self)
+//    }
+//}
 //
-
-import Foundation
-import CoreData
-
-extension NSManagedObject {
-    public func delete() {
-        self.managedObjectContext?.delete(self)
-    }
-}

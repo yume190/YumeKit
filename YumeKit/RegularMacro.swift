@@ -33,7 +33,8 @@ public struct RegexHelper {
     }
     
     public func match(_ input: String) -> Bool {
-        if let matches = regex?.matches(in: input, options: [], range: NSMakeRange(0, input.characters.count)) {
+//        NSMakeRange(0, input.characters.count)
+        if let matches = regex?.matches(in: input, options: [], range: NSMakeRange(0, input.count)) {
             return matches.count > 0
         } else {
             return false
@@ -41,7 +42,7 @@ public struct RegexHelper {
     }
     
     public func match2(_ input: String) -> [String] {
-        if let matches = regex?.matches(in: input, options: [], range: NSMakeRange(0, input.characters.count)) {
+        if let matches = regex?.matches(in: input, options: [], range: NSMakeRange(0, input.count)) {
             let s:NSString = input as NSString
             return matches.map { s.substring(with: $0.range) }
         } else {

@@ -14,6 +14,6 @@ public struct HTML {
             return html
         }
         
-        return (try? NSAttributedString(data: data, options: [NSDocumentTypeDocumentAttribute : NSHTMLTextDocumentType], documentAttributes: nil))?.string ?? html
+        return (try? NSAttributedString(data: data, options: [NSAttributedString.DocumentReadingOptionKey.documentType : NSAttributedString.DocumentType.html], documentAttributes: nil))?.string ?? html
     }
 }

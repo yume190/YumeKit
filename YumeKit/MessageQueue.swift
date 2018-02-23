@@ -10,7 +10,7 @@ import Foundation
 
 public final class MessageQueue {
     
-    public typealias Message = (Void) -> Void
+    public typealias Message = () -> Void
     
     fileprivate final var isHandleingMessage = false
     fileprivate final var messageQueue:[Message] = []

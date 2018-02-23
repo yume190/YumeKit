@@ -3,20 +3,20 @@
 extension String {
     public func fontAndFontColor(_ font:UIFont,fontColor:UIColor) -> NSMutableAttributedString {
         return NSMutableAttributedString(string: self, attributes: [
-            NSForegroundColorAttributeName:fontColor,
-            NSFontAttributeName:font
+            NSAttributedStringKey.foregroundColor:fontColor,
+            NSAttributedStringKey.font:font
             ])
     }
     
     public func fontColor(_ fontColor:UIColor) -> NSMutableAttributedString {
         return NSMutableAttributedString(string: self, attributes: [
-            NSForegroundColorAttributeName:fontColor,
+            NSAttributedStringKey.foregroundColor:fontColor,
             ])
     }
     
     public func font(_ font:UIFont) -> NSMutableAttributedString {
         return NSMutableAttributedString(string: self, attributes: [
-            NSFontAttributeName:font
+            NSAttributedStringKey.font:font
             ])
     }
 }
