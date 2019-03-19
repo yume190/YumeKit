@@ -46,7 +46,7 @@ extension SingleSectionTableViewBox {
         }
 
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return self.presentable.items[section].count
+            return self.presentable.items.count
         }
 
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

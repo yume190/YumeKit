@@ -120,7 +120,7 @@ extension Reusable where Self: UICollectionReusableView {
 }
 
 extension UICollectionView {
-    func dequeueHeader(identifier: String, for indexPath: IndexPath) -> UICollectionReusableView {
+    public func dequeueHeader(identifier: String, for indexPath: IndexPath) -> UICollectionReusableView {
         return self.dequeueReusableSupplementaryView(
             ofKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: identifier,
@@ -128,7 +128,7 @@ extension UICollectionView {
         )
     }
 
-    func dequeueFooter(identifier: String, for indexPath: IndexPath) -> UICollectionReusableView {
+    public func dequeueFooter(identifier: String, for indexPath: IndexPath) -> UICollectionReusableView {
         return self.dequeueReusableSupplementaryView(
             ofKind: UICollectionView.elementKindSectionFooter,
             withReuseIdentifier: identifier,

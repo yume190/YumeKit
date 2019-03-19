@@ -11,7 +11,7 @@
 //
 //  NOTE: !!This Boiler Plate singleton is experimental and a work in progress!!
 
-import UIKit
+import Foundation
 import CoreData
 
 public var mainMOC: NSManagedObjectContext?//SuperCoreDataStack.defaultStack.managedObjectContext

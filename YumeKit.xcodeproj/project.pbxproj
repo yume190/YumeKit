@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A8184EB52240BE6D00326988 /* SingleSectionTableViewPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A862E502224088D30047701B /* SingleSectionTableViewPresentable.swift */; };
+		A8184EB62240BE6D00326988 /* SingleSectionTableViewBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = A862E501224088D30047701B /* SingleSectionTableViewBox.swift */; };
+		A8184EB72240BE8200326988 /* ManagedObjectProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8732A02223F94B300CD5C56 /* ManagedObjectProperty.swift */; };
+		A8184EB82240BE8200326988 /* Operator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8732A03223F94B300CD5C56 /* Operator.swift */; };
+		A8184EB92240BE8200326988 /* Predicate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8732A05223F94B300CD5C56 /* Predicate.swift */; };
+		A8184EBA2240BE8200326988 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8732A04223F94B300CD5C56 /* Query.swift */; };
 		A8361CB81F396F6A00A71D22 /* YumeKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8361CB71F396F6A00A71D22 /* YumeKitTests.swift */; };
 		A8361CBA1F396F6A00A71D22 /* YumeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8E19C2D1E82488F000DE567 /* YumeKit.framework */; };
 		A83699931E8251E400B6C006 /* NSFetchedResultsControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A836998C1E8251E400B6C006 /* NSFetchedResultsControllerExtension.swift */; };
@@ -79,8 +85,8 @@
 		A83699B21E8255E300B6C006 /* JSONDecodeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JSONDecodeKit.framework; path = Carthage/Build/iOS/JSONDecodeKit.framework; sourceTree = "<group>"; };
 		A83699BD1E82760D00B6C006 /* VerticalLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalLabel.swift; sourceTree = "<group>"; };
 		A862E4FE224087550047701B /* MultiSectionTableViewBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSectionTableViewBox.swift; sourceTree = "<group>"; };
-		A862E501224088D30047701B /* MultiSectionTableViewBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSectionTableViewBox.swift; sourceTree = "<group>"; };
-		A862E502224088D30047701B /* MultiSectionTableViewPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSectionTableViewPresentable.swift; sourceTree = "<group>"; };
+		A862E501224088D30047701B /* SingleSectionTableViewBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSectionTableViewBox.swift; sourceTree = "<group>"; };
+		A862E502224088D30047701B /* SingleSectionTableViewPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSectionTableViewPresentable.swift; sourceTree = "<group>"; };
 		A862E50322408A930047701B /* TableViewCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellType.swift; sourceTree = "<group>"; };
 		A8732A02223F94B300CD5C56 /* ManagedObjectProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedObjectProperty.swift; sourceTree = "<group>"; };
 		A8732A03223F94B300CD5C56 /* Operator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operator.swift; sourceTree = "<group>"; };
@@ -209,8 +215,8 @@
 		A862E500224088C40047701B /* SingleSection */ = {
 			isa = PBXGroup;
 			children = (
-				A862E502224088D30047701B /* MultiSectionTableViewPresentable.swift */,
-				A862E501224088D30047701B /* MultiSectionTableViewBox.swift */,
+				A862E502224088D30047701B /* SingleSectionTableViewPresentable.swift */,
+				A862E501224088D30047701B /* SingleSectionTableViewBox.swift */,
 			);
 			path = SingleSection;
 			sourceTree = "<group>";
@@ -282,18 +288,19 @@
 			path = Time;
 			sourceTree = "<group>";
 		};
-		A8732A1A223F9AB100CD5C56 /* NotificationCenter */ = {
+		A8732A1A223F9AB100CD5C56 /* Notifiable */ = {
 			isa = PBXGroup;
 			children = (
 				A8732A1B223F9AC400CD5C56 /* Notifiable.swift */,
 			);
-			path = NotificationCenter;
+			path = Notifiable;
 			sourceTree = "<group>";
 		};
 		A8732A2322407EE700CD5C56 /* Presentable */ = {
 			isa = PBXGroup;
 			children = (
 				A8732A2822407F2200CD5C56 /* Presentable.swift */,
+				A8E19C3B1E8249E1000DE567 /* UIExtension.swift */,
 				A8732A302240825E00CD5C56 /* TableViewPresentable */,
 			);
 			path = Presentable;
@@ -342,7 +349,7 @@
 			isa = PBXGroup;
 			children = (
 				A8732A2322407EE700CD5C56 /* Presentable */,
-				A8732A1A223F9AB100CD5C56 /* NotificationCenter */,
+				A8732A1A223F9AB100CD5C56 /* Notifiable */,
 				A8732A17223F973900CD5C56 /* Time */,
 				A8732A10223F960400CD5C56 /* State */,
 				A8732A0B223F95CA00CD5C56 /* Listable */,
@@ -363,7 +370,6 @@
 		A8E19C351E8249A4000DE567 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				A8E19C3B1E8249E1000DE567 /* UIExtension.swift */,
 				A8E19C361E8249E1000DE567 /* NSExpressionDescriptionExtension.swift */,
 				A8E19C391E8249E1000DE567 /* StringExtension2.swift */,
 				A8E19C3C1E8249E1000DE567 /* UIImageExtension.swift */,
@@ -519,8 +525,10 @@
 				A8732A20223F9FD300CD5C56 /* Date+Ex.swift in Sources */,
 				A83699A71E82520F00B6C006 /* Binding.swift in Sources */,
 				A8E19C3D1E8249E1000DE567 /* NSExpressionDescriptionExtension.swift in Sources */,
+				A8184EB62240BE6D00326988 /* SingleSectionTableViewBox.swift in Sources */,
 				A8756E3D1F31827900DC00EC /* Rest.swift in Sources */,
 				A8E19C431E8249E1000DE567 /* UIImageExtension.swift in Sources */,
+				A8184EB52240BE6D00326988 /* SingleSectionTableViewPresentable.swift in Sources */,
 				A8732A2922407F2200CD5C56 /* Presentable.swift in Sources */,
 				A8756E361F317CFD00DC00EC /* YumeSerializable.swift in Sources */,
 				A8732A16223F962B00CD5C56 /* YumeTextField.swift in Sources */,
@@ -538,10 +546,13 @@
 				A862E4FF224087550047701B /* MultiSectionTableViewBox.swift in Sources */,
 				A8732A13223F960E00CD5C56 /* EventSendable.swift in Sources */,
 				A8756E411F3184DF00DC00EC /* ContinuingData.swift in Sources */,
+				A8184EBA2240BE8200326988 /* Query.swift in Sources */,
 				A83699951E8251E400B6C006 /* NSPredicate+Extension.swift in Sources */,
 				A8756E3B1F31822500DC00EC /* DictionaryAble.swift in Sources */,
 				A83699991E8251E400B6C006 /* FetchRequestExtension.swift in Sources */,
+				A8184EB92240BE8200326988 /* Predicate.swift in Sources */,
 				A8E19C401E8249E1000DE567 /* StringExtension2.swift in Sources */,
+				A8184EB82240BE8200326988 /* Operator.swift in Sources */,
 				A83699A41E82520F00B6C006 /* Regular.swift in Sources */,
 				A8732A322240860F00CD5C56 /* TableViewPresentable.swift in Sources */,
 				A83699BE1E82760D00B6C006 /* VerticalLabel.swift in Sources */,
@@ -551,6 +562,7 @@
 				A8756E3F1F3183B000DC00EC /* Monoid.swift in Sources */,
 				A8732A0A223F959800CD5C56 /* Codable+Ex.swift in Sources */,
 				A8732A2B22407F4700CD5C56 /* MultiSectionTableViewPresentable.swift in Sources */,
+				A8184EB72240BE8200326988 /* ManagedObjectProperty.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
