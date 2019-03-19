@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name     = 'YumeKit'
-    s.version  = '4.2.5'
+    s.version  = '4.2.6'
     s.license  = 'MIT'
     s.summary  = "A Library for Yume use"
     s.homepage = 'https://github.com/yume190/YumeKit'
@@ -57,6 +57,7 @@ Pod::Spec.new do |s|
       ss.source_files = [
         "YumeKit/Presentable/Presentable.swift",
         "YumeKit/Presentable/UIExtension.swift",
+        "YumeKit/Presentable/TableViewPresentable/TableViewBox.swift",
         "YumeKit/Presentable/TableViewPresentable/TableViewCellType.swift",
         "YumeKit/Presentable/TableViewPresentable/TableViewPresentable.swift",
         "YumeKit/Presentable/TableViewPresentable/MultiSection/*.swift",

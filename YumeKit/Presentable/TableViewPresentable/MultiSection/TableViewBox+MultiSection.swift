@@ -8,36 +8,38 @@
 
 import UIKit
 
-final class MultiSectionTableViewBox<Cell: UITableViewCell & Presentable>: MultiSectionTableViewPresentable {
-    public lazy var dataSource: UITableViewDataSource = DataSource(presentable: self)
+extension TableViewBox {
+    final public class MultiSection<Cell: UITableViewCell & Presentable>: MultiSectionTableViewPresentable {
+        public lazy var dataSource: UITableViewDataSource = DataSource(presentable: self)
 
-    public lazy var delegate: UITableViewDelegate = Delegate(presentable: self)
+        public lazy var delegate: UITableViewDelegate = Delegate(presentable: self)
 
-    public var tableView: UITableView?
+        public var tableView: UITableView?
 
-    public var cellType: CellType
+        public var cellType: CellType
 
-    public var items: [[Cell.InnerData]] = []
+        public var items: [[Cell.InnerData]] = []
 
-    public var select: SelectFunction?
+        public var select: SelectFunction?
 
-    public init(tableView: UITableView?, cellType: CellType) {
-        self.tableView = tableView
-        self.cellType = cellType
+        public init(tableView: UITableView?, cellType: CellType) {
+            self.tableView = tableView
+            self.cellType = cellType
 
-        self.tableView?.delegate = self.delegate
-        self.tableView?.dataSource = self.dataSource
+            self.tableView?.delegate = self.delegate
+            self.tableView?.dataSource = self.dataSource
 
-        switch cellType {
-        case .dynamic:
-            tableView?.rowHeight = UITableView.automaticDimension
-        case .static(let height):
-            tableView?.rowHeight = height
+            switch cellType {
+            case .dynamic:
+                tableView?.rowHeight = UITableView.automaticDimension
+            case .static(let height):
+                tableView?.rowHeight = height
+            }
         }
     }
 }
 
-extension MultiSectionTableViewBox {
+extension TableViewBox.MultiSection {
     private final class DataSource<Presentable: MultiSectionTableViewPresentable>: NSObject, UITableViewDataSource {
 
         var presentable: Presentable
@@ -68,7 +70,7 @@ extension MultiSectionTableViewBox {
     }
 }
 
-extension MultiSectionTableViewBox {
+extension TableViewBox.MultiSection {
     private final class Delegate<Presentable: MultiSectionTableViewPresentable>: NSObject, UITableViewDelegate {
 
         var presentable: Presentable

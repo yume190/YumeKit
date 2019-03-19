@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: Haskell Bind
 
-public operator >>- :BindPrecedence
+infix operator >>- :BindPrecedence
 precedencegroup BindPrecedence {
     // 132
     associativity: left
