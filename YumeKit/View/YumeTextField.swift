@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-class YumeTextField: UITextField {
+public class YumeTextField: UITextField {
     typealias Action = (YumeTextField, UIButton) -> Void
     public var leftFunction: YumeTextField.Action?
     public var rightFunction: YumeTextField.Action?
