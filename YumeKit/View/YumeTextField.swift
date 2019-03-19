@@ -14,14 +14,14 @@ public class YumeTextField: UITextField {
     public var leftFunction: YumeTextField.Action?
     public var rightFunction: YumeTextField.Action?
 
-    @IBInspectable var leftPadding: CGFloat = 0
+    @IBInspectable public var leftPadding: CGFloat = 0
     override public func leftViewRect(forBounds bounds: CGRect) -> CGRect {
         var rect = super.leftViewRect(forBounds: bounds)
         rect.origin.x += leftPadding
         return rect
     }
 
-    @IBInspectable var rightPadding: CGFloat = 0
+    @IBInspectable public var rightPadding: CGFloat = 0
     override public func rightViewRect(forBounds bounds: CGRect) -> CGRect {
         var rect = super.rightViewRect(forBounds: bounds)
         rect.origin.x -= rightPadding
