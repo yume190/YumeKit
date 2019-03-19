@@ -17,16 +17,12 @@ public protocol DictionaryAble {
 }
 
 extension Array where Element: DictionaryAble {
-    public func toDictionary() -> Element.DictionaryType {//-> [Key:Value] {
-        return self.reduce(Element.DictionaryType()) {
-            (dict: Element.DictionaryType, next: Array.Element) -> Element.DictionaryType in
-            var _dict = dict
-            _dict[next.key] = next.value
-            return _dict
+    public var dictionary: [Element.Key: Element.Value] {
+        typealias Target = [Element.Key: Element.Value]
+
+        let mapping: [(Element.Key, Element.Value)] = self.map {
+            ($0.key, $0.value)
         }
+        return Dictionary(uniqueKeysWithValues: mapping)
     }
 }
-
-//func toDictionary<Dict:DictionaryAble>() -> [Dict.Key:Dict.Value] {//-> [Key:Value] {
-//    return [:]
-//}
