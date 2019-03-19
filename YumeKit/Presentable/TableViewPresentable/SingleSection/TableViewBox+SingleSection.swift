@@ -46,6 +46,10 @@ extension TableViewBox.SingleSection {
         init(presentable: Presentable) {
             self.presentable = presentable
         }
+        
+        func numberOfSections(in tableView: UITableView) -> Int {
+            return 1
+        }
 
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return self.presentable.items.count
@@ -62,10 +66,6 @@ extension TableViewBox.SingleSection {
                 break
             }
             return cell
-        }
-
-        func numberOfSections(in tableView: UITableView) -> Int {
-            return self.presentable.items.count
         }
     }
 }
