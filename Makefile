@@ -18,13 +18,13 @@ correct:
 update:
 	carthage update --platform ios
 
-ar: build
-	carthage archive YumeKit
-
 build:
-	carthage build \
+	@carthage build \
 		--platform iOS \
 		--no-skip-current
+
+ar: build
+	@carthage archive YumeKit
 
 .PHONY = podLint
 podLint:

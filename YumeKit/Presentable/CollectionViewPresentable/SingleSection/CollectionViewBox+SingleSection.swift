@@ -65,7 +65,7 @@ extension CollectionViewBox {
             self.select?(collectionView, indexPath, data)
         }
 
-        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
             switch self.cellType {
             case .static(let size):
                 return size
