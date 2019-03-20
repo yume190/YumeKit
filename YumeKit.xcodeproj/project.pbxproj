@@ -14,6 +14,11 @@
 		A8184EB92240BE8200326988 /* Predicate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8732A05223F94B300CD5C56 /* Predicate.swift */; };
 		A8184EBA2240BE8200326988 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8732A04223F94B300CD5C56 /* Query.swift */; };
 		A8184EC82240DAE300326988 /* TableViewBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8184EC72240DAE300326988 /* TableViewBox.swift */; };
+		A8184ECB2240ED2100326988 /* CollectionViewPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8184ECA2240ED2100326988 /* CollectionViewPresentable.swift */; };
+		A8184ECD2240EE3A00326988 /* CollectionViewBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8184ECC2240EE3A00326988 /* CollectionViewBox.swift */; };
+		A8184ED02240EE9D00326988 /* SingleSectionCollectionViewPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8184ECF2240EE9D00326988 /* SingleSectionCollectionViewPresentable.swift */; };
+		A8184ED22240EF5900326988 /* CollectionViewBox+SingleSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8184ED12240EF5900326988 /* CollectionViewBox+SingleSection.swift */; };
+		A8184ED42240F4E800326988 /* CollectionViewCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8184ED32240F4E800326988 /* CollectionViewCellType.swift */; };
 		A8361CB81F396F6A00A71D22 /* YumeKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8361CB71F396F6A00A71D22 /* YumeKitTests.swift */; };
 		A8361CBA1F396F6A00A71D22 /* YumeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8E19C2D1E82488F000DE567 /* YumeKit.framework */; };
 		A83699931E8251E400B6C006 /* NSFetchedResultsControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A836998C1E8251E400B6C006 /* NSFetchedResultsControllerExtension.swift */; };
@@ -67,6 +72,11 @@
 
 /* Begin PBXFileReference section */
 		A8184EC72240DAE300326988 /* TableViewBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewBox.swift; sourceTree = "<group>"; };
+		A8184ECA2240ED2100326988 /* CollectionViewPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewPresentable.swift; sourceTree = "<group>"; };
+		A8184ECC2240EE3A00326988 /* CollectionViewBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewBox.swift; sourceTree = "<group>"; };
+		A8184ECF2240EE9D00326988 /* SingleSectionCollectionViewPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSectionCollectionViewPresentable.swift; sourceTree = "<group>"; };
+		A8184ED12240EF5900326988 /* CollectionViewBox+SingleSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionViewBox+SingleSection.swift"; sourceTree = "<group>"; };
+		A8184ED32240F4E800326988 /* CollectionViewCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCellType.swift; sourceTree = "<group>"; };
 		A8361CB51F396F6A00A71D22 /* YumeKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YumeKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8361CB71F396F6A00A71D22 /* YumeKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YumeKitTests.swift; sourceTree = "<group>"; };
 		A8361CB91F396F6A00A71D22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -143,6 +153,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A8184EC92240ECF200326988 /* CollectionViewPresentable */ = {
+			isa = PBXGroup;
+			children = (
+				A8184ECE2240EE7E00326988 /* SingleSection */,
+				A8184ECA2240ED2100326988 /* CollectionViewPresentable.swift */,
+				A8184ECC2240EE3A00326988 /* CollectionViewBox.swift */,
+				A8184ED32240F4E800326988 /* CollectionViewCellType.swift */,
+			);
+			path = CollectionViewPresentable;
+			sourceTree = "<group>";
+		};
+		A8184ECE2240EE7E00326988 /* SingleSection */ = {
+			isa = PBXGroup;
+			children = (
+				A8184ECF2240EE9D00326988 /* SingleSectionCollectionViewPresentable.swift */,
+				A8184ED12240EF5900326988 /* CollectionViewBox+SingleSection.swift */,
+			);
+			path = SingleSection;
+			sourceTree = "<group>";
+		};
 		A8361CB61F396F6A00A71D22 /* YumeKitTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -304,6 +334,7 @@
 				A8732A2822407F2200CD5C56 /* Presentable.swift */,
 				A8E19C3B1E8249E1000DE567 /* UIExtension.swift */,
 				A8732A302240825E00CD5C56 /* TableViewPresentable */,
+				A8184EC92240ECF200326988 /* CollectionViewPresentable */,
 			);
 			path = Presentable;
 			sourceTree = "<group>";
@@ -531,8 +562,10 @@
 				A8184EB62240BE6D00326988 /* TableViewBox+SingleSection.swift in Sources */,
 				A8756E3D1F31827900DC00EC /* Rest.swift in Sources */,
 				A8E19C431E8249E1000DE567 /* UIImageExtension.swift in Sources */,
+				A8184ECD2240EE3A00326988 /* CollectionViewBox.swift in Sources */,
 				A8184EB52240BE6D00326988 /* SingleSectionTableViewPresentable.swift in Sources */,
 				A8732A2922407F2200CD5C56 /* Presentable.swift in Sources */,
+				A8184ED22240EF5900326988 /* CollectionViewBox+SingleSection.swift in Sources */,
 				A8756E361F317CFD00DC00EC /* YumeSerializable.swift in Sources */,
 				A8732A16223F962B00CD5C56 /* YumeTextField.swift in Sources */,
 				A8732A1C223F9AC400CD5C56 /* Notifiable.swift in Sources */,
@@ -543,6 +576,7 @@
 				A8732A22223FA09800CD5C56 /* Measure.swift in Sources */,
 				A8732A14223F960E00CD5C56 /* Statable.swift in Sources */,
 				A83699A81E82520F00B6C006 /* TimeMacro.swift in Sources */,
+				A8184ED02240EE9D00326988 /* SingleSectionCollectionViewPresentable.swift in Sources */,
 				A862E50422408A930047701B /* TableViewCellType.swift in Sources */,
 				A83699961E8251E400B6C006 /* SuperCoreDataStack.swift in Sources */,
 				A83699971E8251E400B6C006 /* SuperFetchedResultsControllerDelegate.swift in Sources */,
@@ -559,9 +593,11 @@
 				A83699A41E82520F00B6C006 /* Regular.swift in Sources */,
 				A8732A322240860F00CD5C56 /* TableViewPresentable.swift in Sources */,
 				A8184EC82240DAE300326988 /* TableViewBox.swift in Sources */,
+				A8184ECB2240ED2100326988 /* CollectionViewPresentable.swift in Sources */,
 				A83699BE1E82760D00B6C006 /* VerticalLabel.swift in Sources */,
 				A8732A1E223F9D5600CD5C56 /* DictionaryExtension.swift in Sources */,
 				A83699941E8251E400B6C006 /* NSManagedObjectExtension.swift in Sources */,
+				A8184ED42240F4E800326988 /* CollectionViewCellType.swift in Sources */,
 				A8E19C421E8249E1000DE567 /* UIExtension.swift in Sources */,
 				A8756E3F1F3183B000DC00EC /* Monoid.swift in Sources */,
 				A8732A0A223F959800CD5C56 /* Codable+Ex.swift in Sources */,

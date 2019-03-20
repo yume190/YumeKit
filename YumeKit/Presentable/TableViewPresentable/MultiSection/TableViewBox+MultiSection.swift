@@ -9,10 +9,10 @@
 import UIKit
 
 extension TableViewBox {
-    final public class MultiSection<Cell: UITableViewCell & Presentable>: MultiSectionTableViewPresentable {
-        public lazy var dataSource: UITableViewDataSource = DataSource(presentable: self)
-
-        public lazy var delegate: UITableViewDelegate = Delegate(presentable: self)
+    final public class MultiSection<Cell: UITableViewCell & Presentable>: NSObject, MultiSectionTableViewPresentable, UITableViewDataSource, UITableViewDelegate {
+//        public lazy var dataSource: UITableViewDataSource = DataSource(presentable: self)
+//
+//        public lazy var delegate: UITableViewDelegate = Delegate(presentable: self)
 
         public var tableView: UITableView?
 
@@ -26,8 +26,10 @@ extension TableViewBox {
             self.tableView = tableView
             self.cellType = cellType
 
-            self.tableView?.delegate = self.delegate
-            self.tableView?.dataSource = self.dataSource
+            super.init()
+
+            self.tableView?.delegate = self
+            self.tableView?.dataSource = self
 
             switch cellType {
             case .dynamic:
@@ -36,27 +38,18 @@ extension TableViewBox {
                 tableView?.rowHeight = height
             }
         }
-    }
-}
 
-extension TableViewBox.MultiSection {
-    private final class DataSource<Presentable: MultiSectionTableViewPresentable>: NSObject, UITableViewDataSource {
-
-        var presentable: Presentable
-        init(presentable: Presentable) {
-            self.presentable = presentable
+        // MARK: UITableViewDataSource
+        public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            return self.items[section].count
         }
 
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return self.presentable.items[section].count
-        }
-
-        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: Presentable.Cell.identifier, for: indexPath)
-            switch self.presentable.cellType {
+        public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            let cell = tableView.dequeueReusableCell(withIdentifier: Cell.identifier, for: indexPath)
+            switch self.cellType {
             case .dynamic:
-                let _cell = cell as? Presentable.Cell
-                let data = self.presentable[indexPath]
+                let _cell = cell as? Cell
+                let data = self[indexPath]
                 _cell?.present(data: data)
             case .static:
                 break
@@ -64,35 +57,84 @@ extension TableViewBox.MultiSection {
             return cell
         }
 
-        func numberOfSections(in tableView: UITableView) -> Int {
-            return self.presentable.items.count
-        }
-    }
-}
-
-extension TableViewBox.MultiSection {
-    private final class Delegate<Presentable: MultiSectionTableViewPresentable>: NSObject, UITableViewDelegate {
-
-        var presentable: Presentable
-        init(presentable: Presentable) {
-            self.presentable = presentable
+        public func numberOfSections(in tableView: UITableView) -> Int {
+            return self.items.count
         }
 
-        func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-            switch self.presentable.cellType {
+        // MARK: UITableViewDelegate
+        public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+            switch self.cellType {
             case .dynamic:
                 return
             case .static:
-                guard let cell = cell as? Presentable.Cell else { return }
-                let data = self.presentable[indexPath]
+                guard let cell = cell as? Cell else { return }
+                let data = self[indexPath]
                 cell.present(data: data)
             }
         }
 
         public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             tableView.deselectRow(at: indexPath, animated: true)
-            let data = self.presentable[indexPath]
-            self.presentable.select?(tableView, indexPath, data)
+            let data = self[indexPath]
+            self.select?(tableView, indexPath, data)
         }
     }
 }
+
+//extension TableViewBox.MultiSection {
+//    private final class DataSource<Presentable: MultiSectionTableViewPresentable>: NSObject, UITableViewDataSource {
+//
+//        var presentable: Presentable
+//        init(presentable: Presentable) {
+//            self.presentable = presentable
+//        }
+//
+//        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//            return self.presentable.items[section].count
+//        }
+//
+//        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: Presentable.Cell.identifier, for: indexPath)
+//            switch self.presentable.cellType {
+//            case .dynamic:
+//                let _cell = cell as? Presentable.Cell
+//                let data = self.presentable[indexPath]
+//                _cell?.present(data: data)
+//            case .static:
+//                break
+//            }
+//            return cell
+//        }
+//
+//        func numberOfSections(in tableView: UITableView) -> Int {
+//            return self.presentable.items.count
+//        }
+//    }
+//}
+//
+//extension TableViewBox.MultiSection {
+//    private final class Delegate<Presentable: MultiSectionTableViewPresentable>: NSObject, UITableViewDelegate {
+//
+//        var presentable: Presentable
+//        init(presentable: Presentable) {
+//            self.presentable = presentable
+//        }
+//
+//        func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//            switch self.presentable.cellType {
+//            case .dynamic:
+//                return
+//            case .static:
+//                guard let cell = cell as? Presentable.Cell else { return }
+//                let data = self.presentable[indexPath]
+//                cell.present(data: data)
+//            }
+//        }
+//
+//        public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//            tableView.deselectRow(at: indexPath, animated: true)
+//            let data = self.presentable[indexPath]
+//            self.presentable.select?(tableView, indexPath, data)
+//        }
+//    }
+//}
