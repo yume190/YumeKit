@@ -33,6 +33,7 @@ extension CollectionViewBox {
 
             self.collectionView?.delegate = self
             self.collectionView?.dataSource = self
+            self.collectionView?.collectionViewLayout = layout
         }
 
         // MARK: UICollectionViewDataSource
