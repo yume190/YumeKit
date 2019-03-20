@@ -9,7 +9,7 @@
 import Foundation
 
 extension CollectionViewBox {
-    final public class SingleSection<Cell: UICollectionViewCell & Presentable>: NSObject, SingleSectionCollectionViewPresentable, UICollectionViewDataSource, UICollectionViewDelegate {
+    final public class SingleSection<Cell: UICollectionViewCell & Presentable>: NSObject, SingleSectionCollectionViewPresentable, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 //        public lazy var dataSource: UICollectionViewDataSource = DataSource(presentable: self)
 //
 //        public lazy var delegate: UICollectionViewDelegate = Delegate(presentable: self)
