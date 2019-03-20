@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name     = 'YumeKit'
-    s.version  = '4.2.11'
+    s.version  = '4.2.12'
     s.license  = 'MIT'
     s.summary  = "A Library for Yume use"
     s.homepage = 'https://github.com/yume190/YumeKit'
@@ -66,8 +66,8 @@ Pod::Spec.new do |s|
         "YumeKit/Presentable/TableViewPresentable/TableViewBox.swift",
         "YumeKit/Presentable/TableViewPresentable/TableViewCellType.swift",
         "YumeKit/Presentable/TableViewPresentable/TableViewPresentable.swift",
-        "YumeKit/Presentable/TableViewPresentable/SingleSection/*.swift"
-        "YumeKit/Presentable/TableViewPresentable/MultiSection/*.swift",
+        "YumeKit/Presentable/TableViewPresentable/SingleSection/*.swift",
+        "YumeKit/Presentable/TableViewPresentable/MultiSection/*.swift"
       ]
       
       ss.framework  = "Foundation"
