@@ -1,22 +1,22 @@
 Pod::Spec.new do |s|
     s.name     = 'YumeKit'
-    s.version  = '4.2.14'
+    s.version  = '4.2.15'
     s.license  = 'MIT'
     s.summary  = "A Library for Yume use"
     s.homepage = 'https://github.com/yume190/YumeKit'
     s.authors  = { 'yume190' => 'yume190@gmail.com' }
     s.social_media_url = "https://www.facebook.com/yume190"
     s.source   = { :git => 'https://github.com/yume190/YumeKit.git', :tag => s.version }
-  
+
     s.ios.deployment_target = '9.0'
     # s.osx.deployment_target = '10.11'
-  
+
     # s.tvos.deployment_target = '9.0'
     # s.watchos.deployment_target = '2.0'
     s.default_subspec = "ALL"
     s.swift_version = '4.2'
     s.static_framework = true
-  
+
     s.subspec "ALL" do |ss|
       ss.dependency "YumeKit/CoreData"
       ss.dependency "YumeKit/FP"
@@ -32,7 +32,7 @@ Pod::Spec.new do |s|
         "YumeKit/CoreData/Kuery/*.swift",
         "YumeKit/CoreData/SuperStack/*.swift"
       ]
-      
+
       ss.framework  = "CoreData"
       ss.framework  = "Foundation"
     end
@@ -49,7 +49,7 @@ Pod::Spec.new do |s|
       ss.source_files = [
         "YumeKit/Regex/*.swift",
       ]
-      
+
       ss.framework  = "Foundation"
     end
 
@@ -62,14 +62,14 @@ Pod::Spec.new do |s|
         "YumeKit/Presentable/CollectionViewPresentable/CollectionViewCellType.swift",
         "YumeKit/Presentable/CollectionViewPresentable/CollectionViewPresentable.swift",
         "YumeKit/Presentable/CollectionViewPresentable/SingleSection/*.swift",
-        
+
         "YumeKit/Presentable/TableViewPresentable/TableViewBox.swift",
         "YumeKit/Presentable/TableViewPresentable/TableViewCellType.swift",
         "YumeKit/Presentable/TableViewPresentable/TableViewPresentable.swift",
         "YumeKit/Presentable/TableViewPresentable/SingleSection/*.swift",
         "YumeKit/Presentable/TableViewPresentable/MultiSection/*.swift"
       ]
-      
+
       ss.framework  = "Foundation"
     end
 
@@ -77,7 +77,7 @@ Pod::Spec.new do |s|
       ss.source_files = [
         "YumeKit/Codable/*.swift",
       ]
-      
+
       ss.framework  = "Foundation"
     end
 
@@ -85,7 +85,7 @@ Pod::Spec.new do |s|
       ss.source_files = [
         "YumeKit/Notifiable/*.swift"
       ]
-      
+
       ss.framework  = "Foundation"
     end
 
@@ -99,17 +99,16 @@ Pod::Spec.new do |s|
         "YumeKit/Time/*.swift",
         "YumeKit/View/*.swift",
       ]
-      
+
       ss.framework  = "UIKit"
     end
 
 
-    
-        
-  
+
+
+
     # s.subspec "JSONMock" do |ss|
     #   ss.source_files = "Sources/JSONMock/*.swift"
     #   ss.dependency "YumeAlamofire/Core"
     # end
   end
-  

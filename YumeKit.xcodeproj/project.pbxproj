@@ -58,6 +58,10 @@
 		A8E19C401E8249E1000DE567 /* StringExtension2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E19C391E8249E1000DE567 /* StringExtension2.swift */; };
 		A8E19C421E8249E1000DE567 /* UIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E19C3B1E8249E1000DE567 /* UIExtension.swift */; };
 		A8E19C431E8249E1000DE567 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E19C3C1E8249E1000DE567 /* UIImageExtension.swift */; };
+		A8EFB1CF224E0415007D8818 /* Insertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8732A0D223F95D300CD5C56 /* Insertable.swift */; };
+		A8EFB1D0224E0415007D8818 /* Reloadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8732A0C223F95D200CD5C56 /* Reloadable.swift */; };
+		A8EFB1D1224E0415007D8818 /* Removable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8732A0E223F95D300CD5C56 /* Removable.swift */; };
+		A8EFB1D2224E0415007D8818 /* Selectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8732A0F223F95D300CD5C56 /* Selectable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -491,6 +495,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -556,14 +561,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8EFB1D2224E0415007D8818 /* Selectable.swift in Sources */,
 				A8732A20223F9FD300CD5C56 /* Date+Ex.swift in Sources */,
 				A83699A71E82520F00B6C006 /* Binding.swift in Sources */,
 				A8E19C3D1E8249E1000DE567 /* NSExpressionDescriptionExtension.swift in Sources */,
 				A8184EB62240BE6D00326988 /* TableViewBox+SingleSection.swift in Sources */,
+				A8EFB1CF224E0415007D8818 /* Insertable.swift in Sources */,
 				A8756E3D1F31827900DC00EC /* Rest.swift in Sources */,
 				A8E19C431E8249E1000DE567 /* UIImageExtension.swift in Sources */,
 				A8184ECD2240EE3A00326988 /* CollectionViewBox.swift in Sources */,
 				A8184EB52240BE6D00326988 /* SingleSectionTableViewPresentable.swift in Sources */,
+				A8EFB1D1224E0415007D8818 /* Removable.swift in Sources */,
 				A8732A2922407F2200CD5C56 /* Presentable.swift in Sources */,
 				A8184ED22240EF5900326988 /* CollectionViewBox+SingleSection.swift in Sources */,
 				A8756E361F317CFD00DC00EC /* YumeSerializable.swift in Sources */,
@@ -583,6 +591,7 @@
 				A862E4FF224087550047701B /* TableViewBox+MultiSection.swift in Sources */,
 				A8732A13223F960E00CD5C56 /* EventSendable.swift in Sources */,
 				A8756E411F3184DF00DC00EC /* ContinuingData.swift in Sources */,
+				A8EFB1D0224E0415007D8818 /* Reloadable.swift in Sources */,
 				A8184EBA2240BE8200326988 /* Query.swift in Sources */,
 				A83699951E8251E400B6C006 /* NSPredicate+Extension.swift in Sources */,
 				A8756E3B1F31822500DC00EC /* DictionaryAble.swift in Sources */,
