@@ -11,5 +11,5 @@ import UIKit
 public protocol Presentable: class {
     associatedtype InnerData
 
-    func present(data: InnerData)
+    func present(data: InnerData, indexPath: IndexPath)
 }

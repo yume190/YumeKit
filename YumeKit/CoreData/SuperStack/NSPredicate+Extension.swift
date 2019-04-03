@@ -179,7 +179,7 @@ public extension NSPredicate {
      - returns: NSPredicate
      */
     // swiftlint:disable:next
-    public convenience init?(firstPredicate: NSPredicate, secondPredicate: NSPredicate, predicateOperator: NSLogicOperator ) {
+    convenience init?(firstPredicate: NSPredicate, secondPredicate: NSPredicate, predicateOperator: NSLogicOperator ) {
         self.init(format: "(\(firstPredicate)) \(predicateOperator.rawValue) (\(secondPredicate))")
     }
 

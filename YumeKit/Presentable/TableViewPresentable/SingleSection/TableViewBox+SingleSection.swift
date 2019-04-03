@@ -54,7 +54,7 @@ extension TableViewBox {
             case .dynamic:
                 let _cell = cell as? Cell
                 let data = self[indexPath]
-                _cell?.present(data: data)
+                _cell?.present(data: data, indexPath: indexPath)
             case .static:
                 break
             }
@@ -69,7 +69,7 @@ extension TableViewBox {
             case .static:
                 guard let cell = cell as? Cell else { return }
                 let data = self[indexPath]
-                cell.present(data: data)
+                cell.present(data: data, indexPath: indexPath)
             }
         }
 

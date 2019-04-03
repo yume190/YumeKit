@@ -56,7 +56,7 @@ extension CollectionViewBox {
         public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
             guard let cell = cell as? Cell else { return }
             let data = self[indexPath]
-            cell.present(data: data)
+            cell.present(data: data, indexPath: indexPath)
         }
 
         public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

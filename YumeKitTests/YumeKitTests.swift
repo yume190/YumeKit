@@ -16,7 +16,7 @@ class YumeKitTests: XCTestCase {
     override func setUp() {
         super.setUp()
         let a = [1,2,3,4,5]
-        cds = a.flatMap {
+        cds = a.compactMap {
             ContinuingData<Int>.findContinousData(array: a, middle: $0)
         }
         // Put setup code here. This method is called before the invocation of each test method in the class.
