@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name     = 'YumeKit'
-    s.version  = '4.2.16'
+    s.version  = '5.0.0'
     s.license  = 'MIT'
     s.summary  = "A Library for Yume use"
     s.homepage = 'https://github.com/yume190/YumeKit'
@@ -14,8 +14,8 @@ Pod::Spec.new do |s|
     # s.tvos.deployment_target = '9.0'
     # s.watchos.deployment_target = '2.0'
     s.default_subspec = "ALL"
-    s.swift_version = '4.2'
-    s.static_framework = true
+    s.swift_version = '5.0'
+    # s.static_framework = true
 
     s.subspec "ALL" do |ss|
       ss.dependency "YumeKit/CoreData"

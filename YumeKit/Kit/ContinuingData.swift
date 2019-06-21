@@ -36,7 +36,7 @@ public enum ContinuingData<Element: Hashable> {
     }
 
     public static func findContinousData(array: [Element], middle: Element) -> ContinuingData<Element> {
-        guard let middleIndex = array.index(of: middle) else {
+        guard let middleIndex = array.firstIndex(of: middle) else {
             return .none
         }
 

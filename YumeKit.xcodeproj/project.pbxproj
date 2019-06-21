@@ -53,6 +53,7 @@
 		A8756E3D1F31827900DC00EC /* Rest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8756E3C1F31827900DC00EC /* Rest.swift */; };
 		A8756E3F1F3183B000DC00EC /* Monoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8756E3E1F3183B000DC00EC /* Monoid.swift */; };
 		A8756E411F3184DF00DC00EC /* ContinuingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8756E401F3184DF00DC00EC /* ContinuingData.swift */; };
+		A87E47E922811B9000FC29A3 /* YumeKit.podspec in Resources */ = {isa = PBXBuildFile; fileRef = A87E47E822811B8F00FC29A3 /* YumeKit.podspec */; };
 		A8E19C311E82488F000DE567 /* YumeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A8E19C2F1E82488F000DE567 /* YumeKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A8E19C3D1E8249E1000DE567 /* NSExpressionDescriptionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E19C361E8249E1000DE567 /* NSExpressionDescriptionExtension.swift */; };
 		A8E19C401E8249E1000DE567 /* StringExtension2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E19C391E8249E1000DE567 /* StringExtension2.swift */; };
@@ -129,6 +130,7 @@
 		A8756E3C1F31827900DC00EC /* Rest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rest.swift; sourceTree = "<group>"; };
 		A8756E3E1F3183B000DC00EC /* Monoid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Monoid.swift; sourceTree = "<group>"; };
 		A8756E401F3184DF00DC00EC /* ContinuingData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContinuingData.swift; sourceTree = "<group>"; };
+		A87E47E822811B8F00FC29A3 /* YumeKit.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = YumeKit.podspec; sourceTree = "<group>"; };
 		A8E19C2D1E82488F000DE567 /* YumeKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YumeKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8E19C2F1E82488F000DE567 /* YumeKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YumeKit.h; sourceTree = "<group>"; };
 		A8E19C301E82488F000DE567 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -367,6 +369,7 @@
 		A8D3234C1E4817BD00EA3445 = {
 			isa = PBXGroup;
 			children = (
+				A87E47E822811B8F00FC29A3 /* YumeKit.podspec */,
 				A8E19C2E1E82488F000DE567 /* YumeKit */,
 				A83699AF1E8255E300B6C006 /* Frameworks */,
 				A8D323561E4817BD00EA3445 /* Products */,
@@ -474,7 +477,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = Yume;
 				TargetAttributes = {
 					A8361CB41F396F6A00A71D22 = {
@@ -492,10 +495,9 @@
 			};
 			buildConfigurationList = A8D323501E4817BD00EA3445 /* Build configuration list for PBXProject "YumeKit" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
@@ -523,6 +525,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A83699981E8251E400B6C006 /* SuperRecord_LICENSE in Resources */,
+				A87E47E922811B9000FC29A3 /* YumeKit.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,14 +633,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 37MR9UKGT4;
 				INFOPLIST_FILE = YumeKitTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yume190.YumeKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -645,14 +651,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 37MR9UKGT4;
 				INFOPLIST_FILE = YumeKitTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yume190.YumeKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -660,6 +669,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -718,6 +728,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -793,7 +804,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -826,7 +837,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
