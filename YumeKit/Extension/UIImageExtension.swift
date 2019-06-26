@@ -10,7 +10,7 @@ import UIKit
 
 extension UIImage {
     public func tint(color: UIColor) -> UIImage {
-        let image = self
+        let image: UIImage = self
         UIGraphicsBeginImageContextWithOptions(image.size, false, UIScreen.main.scale)
         let context: CGContext? = UIGraphicsGetCurrentContext()
 

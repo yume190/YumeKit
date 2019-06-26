@@ -24,9 +24,9 @@ public func setSuperStackMOC(main: NSManagedObjectContext?, background: NSManage
 //let groupName = "group.yume190Team"
 
 private struct SuperCoreDataStackConfig {
-    fileprivate static let bigUpdatePrefix = "_"
+    fileprivate static let bigUpdatePrefix: String = "_"
     fileprivate static let defaultStackName: String = {
-        let bundleName = Bundle.main.infoDictionary?["CFBundleName"] as? String
+        let bundleName: String? = Bundle.main.infoDictionary?["CFBundleName"] as? String
         return bundleName ?? "YumeKit"
     }()
     fileprivate static let stackOption = [
@@ -64,15 +64,15 @@ open class SuperCoreDataStack {
         }
 
         private func copyDatabaseFileFromMainBundle(extensionName: String) {
-            let targetName = prefix + name
-            let target = targetName + "." + extensionName
-            guard let fromFile = Bundle.main.url(forResource: targetName, withExtension: extensionName) else {
+            let targetName: String = prefix + name
+            let target: String = targetName + "." + extensionName
+            guard let fromFile: URL = Bundle.main.url(forResource: targetName, withExtension: extensionName) else {
                 print("Can't load \(target) from main bundle")
                 return
             }
 
             print("Load \(target) from main bundle")
-            let toFile = doc.appendingPathComponent(name + "." + extensionName)
+            let toFile: URL = doc.appendingPathComponent(name + "." + extensionName)
             Temp.copyFile(fromFile, toFile: toFile)
         }
 
@@ -151,20 +151,20 @@ open class SuperCoreDataStack {
                 return nil
         }
 
-        let origin = Temp(doc: userDocumentURL, prefix: resourcePrefix, name: stackName)
-        let big = Temp(doc: userDocumentURL, prefix: resourcePrefix, name: "_" + stackName)
+        let origin: Temp = Temp(doc: userDocumentURL, prefix: resourcePrefix, name: stackName)
+        let big: Temp = Temp(doc: userDocumentURL, prefix: resourcePrefix, name: "_" + stackName)
         origin.checkAndCopyDatabaseFromProject()
         Temp.updatingDatabase(from: big, to: origin)
 
         guard
-            let momURL = Bundle.main.url(forResource: stackName, withExtension: "momd"),
-            let mom = NSManagedObjectModel(contentsOf: momURL)
+            let momURL: URL = Bundle.main.url(forResource: stackName, withExtension: "momd"),
+            let mom: NSManagedObjectModel = NSManagedObjectModel(contentsOf: momURL)
             else {
                 return nil
         }
 
         guard
-            let coordinator = SuperCoreDataStack.makeCoordinator(mom: mom, storeType: storeType, url: origin.sqlURL)
+            let coordinator: NSPersistentStoreCoordinator = SuperCoreDataStack.makeCoordinator(mom: mom, storeType: storeType, url: origin.sqlURL)
             else {
                 return nil
         }
@@ -206,14 +206,14 @@ open class SuperCoreDataStack {
 
     // MARK: UTIL
     func createMainMOC(_ coordinator: NSPersistentStoreCoordinator) -> NSManagedObjectContext {
-        let managedObjectContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType)
+        let managedObjectContext: NSManagedObjectContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = coordinator
         managedObjectContext.mergePolicy = NSRollbackMergePolicy
         return managedObjectContext
     }
 
     private func createBackgroundMOC(_ coordinator: NSPersistentStoreCoordinator) -> NSManagedObjectContext {
-        let managedObjectContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.privateQueueConcurrencyType)
+        let managedObjectContext: NSManagedObjectContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.privateQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = coordinator
         managedObjectContext.mergePolicy = NSOverwriteMergePolicy
         managedObjectContext.undoManager = nil
@@ -224,7 +224,7 @@ open class SuperCoreDataStack {
 extension NSManagedObjectContext {
     @objc func contextDidSaveContext(notification: Notification) {
         //        print("moc save")
-        guard let sender = notification.object as? NSManagedObjectContext else {return}
+        guard let sender: NSManagedObjectContext = notification.object as? NSManagedObjectContext else {return}
 
         if sender === mainMOC {
             //            NSLog("******** Saved main Context in this thread")
@@ -257,7 +257,7 @@ extension SuperCoreDataStack {
 
     open func saveContext (_ context: NSManagedObjectContext?) {
         //TODO: Improve error handling.
-        if let moc = context {
+        if let moc: NSManagedObjectContext = context {
             if moc.hasChanges {
                 do {
                     try moc.save()

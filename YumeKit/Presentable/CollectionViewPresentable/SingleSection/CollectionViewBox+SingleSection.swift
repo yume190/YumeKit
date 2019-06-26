@@ -54,14 +54,14 @@ extension CollectionViewBox {
 
         // MARK: UICollectionViewDelegate
         public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-            guard let cell = cell as? Cell else { return }
-            let data = self[indexPath]
+            guard let cell: Cell = cell as? Cell else { return }
+            let data: Cell.InnerData = self[indexPath]
             cell.present(data: data, indexPath: indexPath)
         }
 
         public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
             collectionView.deselectItem(at: indexPath, animated: true)
-            let data = self[indexPath]
+            let data: Cell.InnerData = self[indexPath]
             self.select?(collectionView, indexPath, data)
         }
 
@@ -70,11 +70,11 @@ extension CollectionViewBox {
             case .static(let size):
                 return size
             case let .dynamic(count, height):
-                let width = collectionView.bounds.size.width
-                let contentWidth = Int(width - self.layout.sectionInset.left - self.layout.sectionInset.right)
-                let fakeContentWidth = contentWidth + Int(self.layout.minimumLineSpacing)
-                let fakeCellWidth = fakeContentWidth / count
-                let cellWidth = fakeCellWidth - Int(self.layout.minimumLineSpacing)
+                let width: CGFloat = collectionView.bounds.size.width
+                let contentWidth: Int = Int(width - self.layout.sectionInset.left - self.layout.sectionInset.right)
+                let fakeContentWidth: Int = contentWidth + Int(self.layout.minimumLineSpacing)
+                let fakeCellWidth: Int = fakeContentWidth / count
+                let cellWidth: Int = fakeCellWidth - Int(self.layout.minimumLineSpacing)
                 return CGSize(width: CGFloat(cellWidth), height: height)
             }
         }

@@ -13,7 +13,7 @@ open class VerticalLabel: UILabel {
 
     @IBInspectable public var verticalAlignment: String {
         set {
-            if let vAlign = VerticalAlignment(rawValue: newValue) {
+            if let vAlign: Alignment = Alignment(rawValue: newValue) {
                 _verticalAlignment = vAlign
             }
         }
@@ -22,13 +22,13 @@ open class VerticalLabel: UILabel {
         }
     }
 
-    public var _verticalAlignment: VerticalAlignment = .Top {
+    public var _verticalAlignment: Alignment = .Top {
         didSet {
             self.setNeedsDisplay()
         }
     }
 
-    public enum VerticalAlignment: String {
+    public enum Alignment: String {
         case Top = "Top"
         case Middle = "Middle"
         case Bottom = "Bottom"

@@ -10,7 +10,7 @@ import UIKit
 
 public struct HTML {
     public static func htmlToString(html: String) -> String {
-        guard let data = html.data(using: String.Encoding.unicode, allowLossyConversion: true) else {
+        guard let data: Data = html.data(using: String.Encoding.unicode, allowLossyConversion: true) else {
             return html
         }
 

@@ -65,7 +65,7 @@ extension Dictionary: Monoid {
         //        let all:[(Key,Value)] = l + r
         //        let _: [Key:Value] = Dictionary<Key,Value>(dictionaryLiteral: all)
 
-        var result = lhs
+        var result: [Key: Value] = lhs
         for key in rhs.keys {
             result[key] = rhs[key]
         }

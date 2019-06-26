@@ -25,7 +25,7 @@ public struct RegexHelper {
 
     public init(_ pattern: String) {
         do {
-            regex = try NSRegularExpression(pattern: pattern,
+            self.regex = try NSRegularExpression(pattern: pattern,
                 options: .caseInsensitive)
         } catch let error {
             print(error)
@@ -34,7 +34,7 @@ public struct RegexHelper {
 
     public func match(_ input: String) -> Bool {
 //        NSMakeRange(0, input.characters.count)
-        if let matches = regex?.matches(in: input, options: [], range: NSRange(location: 0, length: input.count)) {
+        if let matches: [NSTextCheckingResult] = regex?.matches(in: input, options: [], range: NSRange(location: 0, length: input.count)) {
             return matches.count > 0
         } else {
             return false
@@ -42,7 +42,7 @@ public struct RegexHelper {
     }
 
     public func match2(_ input: String) -> [String] {
-        if let matches = regex?.matches(in: input, options: [], range: NSRange(location: 0, length: input.count)) {
+        if let matches: [NSTextCheckingResult] = regex?.matches(in: input, options: [], range: NSRange(location: 0, length: input.count)) {
             let s: NSString = input as NSString
             return matches.map { s.substring(with: $0.range) }
         } else {

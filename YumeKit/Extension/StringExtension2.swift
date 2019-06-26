@@ -23,7 +23,7 @@ extension String {
 
 extension String {
     public static func + (l: String, r: NSAttributedString) -> NSAttributedString {
-        let str = NSMutableAttributedString(string: l)
+        let str: NSMutableAttributedString = NSMutableAttributedString(string: l)
         str.append(r)
         return str
     }
@@ -31,13 +31,13 @@ extension String {
 
 extension NSAttributedString {
     public static func + (l: NSAttributedString, r: String) -> NSAttributedString {
-        let str = NSMutableAttributedString(attributedString: l)
+        let str: NSMutableAttributedString = NSMutableAttributedString(attributedString: l)
         str.append(NSAttributedString(string: r))
         return str
     }
 
     public static func + (l: NSAttributedString, r: NSAttributedString) -> NSAttributedString {
-        let str = NSMutableAttributedString(attributedString: l)
+        let str: NSMutableAttributedString = NSMutableAttributedString(attributedString: l)
         str.append(r)
         return str
     }
@@ -45,13 +45,13 @@ extension NSAttributedString {
 
 extension NSMutableAttributedString {
     public static func + (l: NSMutableAttributedString, r: String) -> NSMutableAttributedString {
-        let str = NSMutableAttributedString(attributedString: l)
+        let str: NSMutableAttributedString = NSMutableAttributedString(attributedString: l)
         str.append(NSAttributedString(string: r))
         return str
     }
 
     public static func + (l: NSMutableAttributedString, r: NSAttributedString) -> NSMutableAttributedString {
-        let str = NSMutableAttributedString(attributedString: l)
+        let str: NSMutableAttributedString = NSMutableAttributedString(attributedString: l)
         str.append(r)
         return str
     }

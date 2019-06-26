@@ -16,7 +16,7 @@ public enum ContinuingData<Element: Hashable> {
     case none
 
     public static func findPrevious(array: [Element], middleIndex: Int) -> Element? {
-        let index = middleIndex - 1
+        let index: Int = middleIndex - 1
         if array.count < 0 {
             return nil
         }
@@ -28,7 +28,7 @@ public enum ContinuingData<Element: Hashable> {
     }
 
     public static func findNext(array: [Element], middleIndex: Int) -> Element? {
-        let index = middleIndex + 1
+        let index: Int = middleIndex + 1
         if (index + 1) <= array.count {
             return array[index]
         }
@@ -36,7 +36,7 @@ public enum ContinuingData<Element: Hashable> {
     }
 
     public static func findContinousData(array: [Element], middle: Element) -> ContinuingData<Element> {
-        guard let middleIndex = array.firstIndex(of: middle) else {
+        guard let middleIndex: Int = array.firstIndex(of: middle) else {
             return .none
         }
 

@@ -10,8 +10,8 @@ import Foundation
 
 extension Date {
     public static var now: DateComponents {
-        let date = Date()
-        let calendar = Calendar.current
+        let date: Date = Date()
+        let calendar: Calendar = Calendar.current
         return calendar.dateComponents(
             [
                 .year, .month, .day,

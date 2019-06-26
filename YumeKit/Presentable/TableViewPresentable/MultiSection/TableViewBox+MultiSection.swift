@@ -45,11 +45,11 @@ extension TableViewBox {
         }
 
         public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: Cell.identifier, for: indexPath)
+            let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: Cell.identifier, for: indexPath)
             switch self.cellType {
             case .dynamic:
-                let _cell = cell as? Cell
-                let data = self[indexPath]
+                let _cell: Cell? = cell as? Cell
+                let data: Cell.InnerData = self[indexPath]
                 _cell?.present(data: data, indexPath: indexPath)
             case .static:
                 break
@@ -67,15 +67,15 @@ extension TableViewBox {
             case .dynamic:
                 return
             case .static:
-                guard let cell = cell as? Cell else { return }
-                let data = self[indexPath]
+                guard let cell: Cell = cell as? Cell else { return }
+                let data: Cell.InnerData = self[indexPath]
                 cell.present(data: data, indexPath: indexPath)
             }
         }
 
         public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             tableView.deselectRow(at: indexPath, animated: true)
-            let data = self[indexPath]
+            let data: Cell.InnerData = self[indexPath]
             self.select?(tableView, indexPath, data)
         }
     }

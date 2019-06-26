@@ -40,8 +40,8 @@ public final class MessageQueue {
     }
 
     fileprivate func loopAfterInBackground(_ block:@escaping () -> Void) {
-        let time = DispatchTime.now() + loopInterval
-        let backQ = DispatchQueue.global(qos: .background)
+        let time: DispatchTime = DispatchTime.now() + loopInterval
+        let backQ: DispatchQueue = DispatchQueue.global(qos: .background)
         backQ.asyncAfter(deadline: time, execute: block)
     }
 

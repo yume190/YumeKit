@@ -16,25 +16,25 @@ public class YumeTextField: UITextField {
 
     @IBInspectable public var leftPadding: CGFloat = 0
     override public func leftViewRect(forBounds bounds: CGRect) -> CGRect {
-        var rect = super.leftViewRect(forBounds: bounds)
+        var rect: CGRect = super.leftViewRect(forBounds: bounds)
         rect.origin.x += leftPadding
         return rect
     }
 
     @IBInspectable public var rightPadding: CGFloat = 0
     override public func rightViewRect(forBounds bounds: CGRect) -> CGRect {
-        var rect = super.rightViewRect(forBounds: bounds)
+        var rect: CGRect = super.rightViewRect(forBounds: bounds)
         rect.origin.x -= rightPadding
         return rect
     }
 
-    private lazy var leftButton = UIButton()
-    private lazy var rightButton = UIButton()
+    private final lazy var leftButton = UIButton()
+    private final lazy var rightButton = UIButton()
 
     @IBInspectable
     public var leftImage: UIImage? {
         didSet {
-            let btn = self.leftButton
+            let btn: UIButton = self.leftButton
             btn.setImage(self.leftImage, for: .normal)
             btn.addTarget(
                 self,
@@ -48,7 +48,7 @@ public class YumeTextField: UITextField {
     @IBInspectable
     public var rightImage: UIImage? {
         didSet {
-            let btn = self.rightButton
+            let btn: UIButton = self.rightButton
             btn.setImage(self.rightImage, for: .normal)
             btn.addTarget(
                 self,
@@ -62,7 +62,7 @@ public class YumeTextField: UITextField {
     @IBInspectable
     public var leftString: String? {
         didSet {
-            let btn = self.leftButton
+            let btn: UIButton = self.leftButton
             btn.setTitle(self.leftString, for: .normal)
             btn.addTarget(
                 self,
@@ -76,7 +76,7 @@ public class YumeTextField: UITextField {
     @IBInspectable
     public var rightString: String? {
         didSet {
-            let btn = self.rightButton
+            let btn: UIButton = self.rightButton
             btn.setTitle(self.rightString, for: .normal)
             btn.addTarget(
                 self,
