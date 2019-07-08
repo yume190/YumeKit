@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name     = 'YumeKit'
-    s.version  = '5.0.1'
+    s.version  = '5.0.2'
     s.license  = 'MIT'
     s.summary  = "A Library for Yume use"
     s.homepage = 'https://github.com/yume190/YumeKit'
@@ -92,6 +92,7 @@ Pod::Spec.new do |s|
     s.subspec "Core" do |ss|
       ss.source_files = [
         "YumeKit/Extension/*.swift",
+        "YumeKit/UIExtension/*.swift",
         "YumeKit/Kit/*.swift",
         "YumeKit/Listable/*.swift",
         "YumeKit/Macro/*.swift",
