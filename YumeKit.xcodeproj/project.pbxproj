@@ -69,6 +69,10 @@
 		A8FE866222D31D0F0052ADD6 /* Date+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FE866122D31D0F0052ADD6 /* Date+Format.swift */; };
 		A8FE866422D31D930052ADD6 /* Array+Compare.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FE866322D31D930052ADD6 /* Array+Compare.swift */; };
 		A8FE866622D31D9E0052ADD6 /* Array+MinMax.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FE866522D31D9E0052ADD6 /* Array+MinMax.swift */; };
+		A8FE866822D326E40052ADD6 /* SuperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FE866722D326E40052ADD6 /* SuperView.swift */; };
+		A8FE866A22D3272A0052ADD6 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FE866922D3272A0052ADD6 /* ProgressBar.swift */; };
+		A8FE866C22D327D60052ADD6 /* CGSize+Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FE866B22D327D60052ADD6 /* CGSize+Square.swift */; };
+		A8FE866E22D328100052ADD6 /* UIBarButtonItem+Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FE866D22D328100052ADD6 /* UIBarButtonItem+Button.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,6 +154,10 @@
 		A8FE866122D31D0F0052ADD6 /* Date+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Format.swift"; sourceTree = "<group>"; };
 		A8FE866322D31D930052ADD6 /* Array+Compare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Compare.swift"; sourceTree = "<group>"; };
 		A8FE866522D31D9E0052ADD6 /* Array+MinMax.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+MinMax.swift"; sourceTree = "<group>"; };
+		A8FE866722D326E40052ADD6 /* SuperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperView.swift; sourceTree = "<group>"; };
+		A8FE866922D3272A0052ADD6 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
+		A8FE866B22D327D60052ADD6 /* CGSize+Square.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+Square.swift"; sourceTree = "<group>"; };
+		A8FE866D22D328100052ADD6 /* UIBarButtonItem+Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Button.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -249,6 +257,7 @@
 			children = (
 				A8732A15223F962B00CD5C56 /* YumeTextField.swift */,
 				A83699BD1E82760D00B6C006 /* VerticalLabel.swift */,
+				A8FE866922D3272A0052ADD6 /* ProgressBar.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -441,6 +450,9 @@
 				A8FE865B22D31BE50052ADD6 /* UIView+Corner.swift */,
 				A8FE865D22D31BEC0052ADD6 /* String+Size.swift */,
 				A8FE865F22D31CF20052ADD6 /* UIColor+Ex.swift */,
+				A8FE866722D326E40052ADD6 /* SuperView.swift */,
+				A8FE866B22D327D60052ADD6 /* CGSize+Square.swift */,
+				A8FE866D22D328100052ADD6 /* UIBarButtonItem+Button.swift */,
 			);
 			path = UIExtension;
 			sourceTree = "<group>";
@@ -603,17 +615,20 @@
 				A8184EB52240BE6D00326988 /* SingleSectionTableViewPresentable.swift in Sources */,
 				A8EFB1D1224E0415007D8818 /* Removable.swift in Sources */,
 				A8732A2922407F2200CD5C56 /* Presentable.swift in Sources */,
+				A8FE866A22D3272A0052ADD6 /* ProgressBar.swift in Sources */,
 				A8184ED22240EF5900326988 /* CollectionViewBox+SingleSection.swift in Sources */,
 				A8756E361F317CFD00DC00EC /* YumeSerializable.swift in Sources */,
 				A8732A16223F962B00CD5C56 /* YumeTextField.swift in Sources */,
 				A8732A1C223F9AC400CD5C56 /* Notifiable.swift in Sources */,
 				A8732A19223F980900CD5C56 /* DateFormatter+Ex.swift in Sources */,
+				A8FE866C22D327D60052ADD6 /* CGSize+Square.swift in Sources */,
 				A83699931E8251E400B6C006 /* NSFetchedResultsControllerExtension.swift in Sources */,
 				A83699A91E82520F00B6C006 /* HtmlMacro.swift in Sources */,
 				A83699A51E82520F00B6C006 /* MessageQueue.swift in Sources */,
 				A8732A22223FA09800CD5C56 /* Measure.swift in Sources */,
 				A8732A14223F960E00CD5C56 /* Statable.swift in Sources */,
 				A83699A81E82520F00B6C006 /* TimeMacro.swift in Sources */,
+				A8FE866822D326E40052ADD6 /* SuperView.swift in Sources */,
 				A8184ED02240EE9D00326988 /* SingleSectionCollectionViewPresentable.swift in Sources */,
 				A862E50422408A930047701B /* TableViewCellType.swift in Sources */,
 				A83699961E8251E400B6C006 /* SuperCoreDataStack.swift in Sources */,
@@ -632,6 +647,7 @@
 				A8184EB82240BE8200326988 /* Operator.swift in Sources */,
 				A83699A41E82520F00B6C006 /* Regular.swift in Sources */,
 				A8732A322240860F00CD5C56 /* TableViewPresentable.swift in Sources */,
+				A8FE866E22D328100052ADD6 /* UIBarButtonItem+Button.swift in Sources */,
 				A8184EC82240DAE300326988 /* TableViewBox.swift in Sources */,
 				A8184ECB2240ED2100326988 /* CollectionViewPresentable.swift in Sources */,
 				A8FE866022D31CF20052ADD6 /* UIColor+Ex.swift in Sources */,

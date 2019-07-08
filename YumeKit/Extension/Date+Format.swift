@@ -13,7 +13,7 @@ extension String {
         let origin: DateFormatter = DateFormatter.taiwan(format: originFormat)
         let target: DateFormatter = DateFormatter.taiwan(format: targetFormat)
         
-        guard let date = origin.date(from: self) else {return nil}
+        guard let date: Date = origin.date(from: self) else {return nil}
         return target.string(from: date)
     }
 }

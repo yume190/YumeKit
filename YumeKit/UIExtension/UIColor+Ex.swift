@@ -17,7 +17,7 @@ fileprivate func shiftting(color: Int, mask: Int, shift: Int) -> CGFloat {
 }
 
 public extension UIColor {
-    convenience public init(rgb: Int, alpha: CGFloat = 1.0) {
+    convenience init(rgb: Int, alpha: CGFloat = 1.0) {
         self.init(
             red: shiftting(color: rgb, mask: 0xFF0000, shift: 16),
             green: shiftting(color: rgb, mask: 0x00FF00, shift: 8),
