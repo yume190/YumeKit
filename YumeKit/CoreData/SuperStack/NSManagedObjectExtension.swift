@@ -37,7 +37,7 @@ extension MOProtocol where Self: NSManagedObject {
         context: NSManagedObjectContext = mainMOC!,
         fetchRequestConfig: ((NSFetchRequest<NSDictionary>) -> Void)? = nil) -> [NSDictionary] {
 
-        let fetchRequest = NSFetchRequest<NSDictionary>(entityName: entityName())
+        let fetchRequest: NSFetchRequest<NSDictionary> = NSFetchRequest<NSDictionary>(entityName: entityName())
         fetchRequest.predicate = predicate
         fetchRequest.resultType = NSFetchRequestResultType.dictionaryResultType
         fetchRequestConfig?(fetchRequest)
@@ -53,8 +53,8 @@ extension MOProtocol where Self: NSManagedObject {
     }
 
     public static func createNewEntity(_ context: NSManagedObjectContext = mainMOC!) -> Self {
-        let entityDescription = NSEntityDescription.entity(forEntityName: entityName(), in: context)
-        let obj = Self(entity: entityDescription!, insertInto: context)
+        let entityDescription: NSEntityDescription? = NSEntityDescription.entity(forEntityName: entityName(), in: context)
+        let obj: Self = Self(entity: entityDescription!, insertInto: context)
         return obj
     }
 }
@@ -69,7 +69,7 @@ extension MOProtocol where Self: NSManagedObject {
         context: NSManagedObjectContext = mainMOC!,
         fetchRequestConfig: ((NSFetchRequest<Self>) -> Void)? = nil) -> [Self] {
 
-        let fetchRequest = commonFetchRequest(predicate: predicate, context: context) { fetchRequest in
+        let fetchRequest: NSFetchRequest<Self> = commonFetchRequest(predicate: predicate, context: context) { fetchRequest in
             fetchRequest.includesPropertyValues = includesPropertyValues
             fetchRequestConfig?(fetchRequest)
         }
@@ -83,13 +83,13 @@ extension MOProtocol where Self: NSManagedObject {
 
     // swiftlint:disable:next
     public static func findAllWithAttribute(_ attribute: String!, value: Any, context: NSManagedObjectContext) -> [Self] {
-        let predicate = predicateBuilder(attribute, value: value, predicateOperator: .equal)
+        let predicate: NSPredicate? = predicateBuilder(attribute, value: value, predicateOperator: .equal)
         return findAllWithPredicate(predicate, context: context)
     }
 
     // MARK: Find One
     public static func findFirst(_ predicate: NSPredicate!, context: NSManagedObjectContext = mainMOC!) -> Self? {
-        let fetchRequest = commonFetchRequest(predicate: predicate, context: context) { fetchRequest in
+        let fetchRequest: NSFetchRequest<Self> = commonFetchRequest(predicate: predicate, context: context) { fetchRequest in
             fetchRequest.fetchLimit = 1
         }
 
@@ -107,7 +107,7 @@ extension MOProtocol where Self: NSManagedObject {
 
     // swiftlint:disable:next
     public static func findFirstOrCreateWithAttribute(_ attribute: String!, value: Any!, context: NSManagedObjectContext = mainMOC!) -> Self {
-        let predicate = predicateBuilder(attribute, value: value, predicateOperator: .equal)
+        let predicate: NSPredicate? = predicateBuilder(attribute, value: value, predicateOperator: .equal)
         return findFirstOrCreateWithPredicate(predicate, context: context)
     }
 }
@@ -119,7 +119,7 @@ extension MOProtocol where Self: NSManagedObject {
     }
 
     public static func deleteAll(_ predicate: NSPredicate!, context: NSManagedObjectContext = mainMOC!) {
-        let results = findAllWithPredicate(predicate, includesPropertyValues: false, context: context)
+        let results: [Self] = findAllWithPredicate(predicate, includesPropertyValues: false, context: context)
         for result in results {
             context.delete(result)
         }
@@ -146,7 +146,7 @@ extension MOProtocol where Self: NSManagedObject {
         predicate: NSPredicate?,
         context: NSManagedObjectContext,
         customSetting: ((NSFetchRequest<Self>) -> Void)? = nil) -> NSFetchRequest<Self> {
-        let fetchRequest = NSFetchRequest<Self>(entityName: entityName())
+        let fetchRequest: NSFetchRequest<Self> = NSFetchRequest<Self>(entityName: entityName())
         fetchRequest.predicate = predicate
         fetchRequest.entity = NSEntityDescription.entity(forEntityName: entityName(), in: context)
         customSetting?(fetchRequest)
@@ -179,7 +179,7 @@ extension MOProtocol where Self: NSManagedObject {
 
     // swiftlint:disable:next
     public static func count(_ context: NSManagedObjectContext = mainMOC!, predicate: NSPredicate? = nil) -> Int {
-        let fetchRequest = commonFetchRequest(predicate: predicate, context: context) { fetchRequest in
+        let fetchRequest: NSFetchRequest<Self> = commonFetchRequest(predicate: predicate, context: context) { fetchRequest in
             fetchRequest.includesPropertyValues = false
             fetchRequest.includesSubentities = false
             fetchRequest.propertiesToFetch = []

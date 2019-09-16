@@ -27,7 +27,7 @@ public struct RegexHelper {
         do {
             self.regex = try NSRegularExpression(pattern: pattern,
                 options: .caseInsensitive)
-        } catch let error {
+        } catch {
             print(error)
         }
     }

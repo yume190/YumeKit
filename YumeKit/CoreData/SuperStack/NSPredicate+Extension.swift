@@ -163,7 +163,7 @@ public enum NSPredicateOperator: String {
  */
 public func predicateBuilder(_ attribute: String!, value: Any?, predicateOperator: NSPredicateOperator) -> NSPredicate? {
     guard let value = value else { return nil }
-    var predicate = NSPredicate(format: "%K \(predicateOperator.rawValue) $value", attribute)
+    var predicate: NSPredicate = NSPredicate(format: "%K \(predicateOperator.rawValue) $value", attribute)
     predicate = predicate.withSubstitutionVariables(["value": value])
     return predicate
 }

@@ -28,8 +28,8 @@ public class YumeTextField: UITextField {
         return rect
     }
 
-    private final lazy var leftButton = UIButton()
-    private final lazy var rightButton = UIButton()
+    private final lazy var leftButton: UIButton = UIButton()
+    private final lazy var rightButton: UIButton = UIButton()
 
     @IBInspectable
     public var leftImage: UIImage? {

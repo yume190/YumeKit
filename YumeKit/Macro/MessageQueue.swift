@@ -12,7 +12,7 @@ public final class MessageQueue {
 
     public typealias Message = () -> Void
 
-    fileprivate final var isHandleingMessage = false
+    fileprivate final var isHandleingMessage: Bool = false
     fileprivate final var messageQueue: [Message] = []
     fileprivate final var loopInterval: DispatchTimeInterval
 

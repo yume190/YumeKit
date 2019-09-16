@@ -40,8 +40,8 @@ public enum ContinuingData<Element: Hashable> {
             return .none
         }
 
-        let _previous = ContinuingData.findPrevious(array: array, middleIndex: middleIndex)
-        let _next = ContinuingData.findNext(array: array, middleIndex: middleIndex)
+        let _previous: Element? = ContinuingData.findPrevious(array: array, middleIndex: middleIndex)
+        let _next: Element? = ContinuingData.findNext(array: array, middleIndex: middleIndex)
 
         if let previous = _previous, _next == nil {
             return .pm(previous: previous, middle: middle)

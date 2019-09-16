@@ -31,7 +31,7 @@ public class Query<ResultType> where ResultType: NSFetchRequestResult {
     }
 
     public func sort(_ keyPath: PartialKeyPath<ResultType>) -> Query {
-        let sortDescriptor = NSSortDescriptor(key: keyPath._kvcKeyPathString!, ascending: true)
+        let sortDescriptor: NSSortDescriptor = NSSortDescriptor(key: keyPath._kvcKeyPathString!, ascending: true)
         if let sortDescriptors = fetchRequest.sortDescriptors {
             fetchRequest.sortDescriptors = sortDescriptors + [sortDescriptor]
             return self

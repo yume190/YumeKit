@@ -49,7 +49,7 @@ extension TableViewBox {
         }
 
         public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: Cell.identifier, for: indexPath)
+            let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: Cell.identifier, for: indexPath)
             switch self.cellType {
             case .dynamic:
                 let _cell: Cell? = cell as? Cell

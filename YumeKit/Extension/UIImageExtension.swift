@@ -28,7 +28,7 @@ extension UIImage {
         color.setFill()
         context?.fill(rect)
 
-        let coloredImage = UIGraphicsGetImageFromCurrentImageContext()
+        let coloredImage: UIImage? = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return coloredImage!
     }
