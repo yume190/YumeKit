@@ -8,4 +8,6 @@
 
 import Foundation
 
-public struct TableViewBox {}
+extension Box {
+    public enum TableView {}
+}

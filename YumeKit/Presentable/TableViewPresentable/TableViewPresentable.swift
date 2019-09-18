@@ -11,7 +11,7 @@ import Foundation
 public protocol TableViewPresentable: class {
     associatedtype Cell: UITableViewCell & Presentable
     var tableView: UITableView? { get set }
-    var cellType: CellType { get }
+    var cellType: Box.TableView.CellType { get }
 
     static func registerNibTo(tableView: UITableView?)
     static func registerClassTo(tableView: UITableView?)
@@ -22,7 +22,7 @@ public protocol TableViewPresentable: class {
     typealias SelectFunction = (UITableView, IndexPath, Cell.InnerData) -> Void
     var select: SelectFunction? { get set }
 
-    init(tableView: UITableView?, cellType: CellType)
+    init(tableView: UITableView?, cellType: Box.TableView.CellType)
 }
 
 extension TableViewPresentable {

@@ -12,7 +12,7 @@ public protocol CollectionViewPresentable: class {
     associatedtype Cell: UICollectionViewCell & Presentable
     var collectionView: UICollectionView? { get set }
     var layout: UICollectionViewFlowLayout { get }
-    var cellType: CollectionViewCellType { get }
+    var cellType: Box.CollectionView.CellType { get }
 
     static func registerNibTo(collectionView: UICollectionView?)
     static func registerClassTo(collectionView: UICollectionView?)
@@ -23,7 +23,7 @@ public protocol CollectionViewPresentable: class {
     typealias SelectFunction = (UICollectionView, IndexPath, Cell.InnerData) -> Void
     var select: SelectFunction? { get set }
 
-    init(collectionView: UICollectionView?, layout: UICollectionViewFlowLayout, cellType: CollectionViewCellType)
+    init(collectionView: UICollectionView?, layout: UICollectionViewFlowLayout, cellType: Box.CollectionView.CellType)
 }
 
 extension CollectionViewPresentable {

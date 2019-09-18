@@ -1,5 +1,5 @@
 //
-//  TableViewCellType.swift
+//  CollectionViewBox.swift
 //  YumeKit
 //
 //  Created by Yume on 2019/3/19.
@@ -8,7 +8,6 @@
 
 import Foundation
 
-public enum CellType {
-    case `dynamic`
-    case `static`(height: CGFloat)
+extension Box {
+    public enum CollectionView {}
 }

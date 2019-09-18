@@ -10,6 +10,7 @@ import Foundation
 
 public protocol SingleSectionCollectionViewPresentable: CollectionViewPresentable {
     var items: [Cell.InnerData] { get set }
+    var extra: (() -> Cell.ExtraData)? { get }
 
     subscript(indexPath: IndexPath) -> Cell.InnerData { get }
 }

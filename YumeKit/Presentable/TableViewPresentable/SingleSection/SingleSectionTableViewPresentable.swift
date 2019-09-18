@@ -10,6 +10,7 @@ import UIKit
 
 public protocol SingleSectionTableViewPresentable: TableViewPresentable {
     var items: [Cell.InnerData] { get set }
+    var extra: (() -> Cell.ExtraData)? { get }
 
     subscript(indexPath: IndexPath) -> Cell.InnerData { get }
 }

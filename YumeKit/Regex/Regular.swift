@@ -33,7 +33,6 @@ public struct RegexHelper {
     }
 
     public func match(_ input: String) -> Bool {
-//        NSMakeRange(0, input.characters.count)
         if let matches: [NSTextCheckingResult] = regex?.matches(in: input, options: [], range: NSRange(location: 0, length: input.count)) {
             return matches.count > 0
         } else {

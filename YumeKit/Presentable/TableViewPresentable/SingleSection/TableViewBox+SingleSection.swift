@@ -8,21 +8,19 @@
 
 import UIKit
 
-extension TableViewBox {
+extension Box.TableView {
     final public class SingleSection<Cell: UITableViewCell & Presentable>: NSObject, SingleSectionTableViewPresentable, UITableViewDataSource, UITableViewDelegate {
-//        public lazy var dataSource: UITableViewDataSource = DataSource(presentable: self)
-//
-//        public lazy var delegate: UITableViewDelegate = Delegate(presentable: self)
-
+        public var extra: (() -> Cell.ExtraData)? = nil
+        
         public var tableView: UITableView?
 
-        public var cellType: CellType
+        public var cellType: Box.TableView.CellType
 
         public var items: [Cell.InnerData] = []
 
         public var select: SelectFunction?
 
-        public init(tableView: UITableView?, cellType: CellType) {
+        public init(tableView: UITableView?, cellType: Box.TableView.CellType) {
             self.tableView = tableView
             self.cellType = cellType
 
@@ -54,7 +52,8 @@ extension TableViewBox {
             case .dynamic:
                 let _cell: Cell? = cell as? Cell
                 let data: Cell.InnerData = self[indexPath]
-                _cell?.present(data: data, indexPath: indexPath)
+                let extra: Cell.ExtraData? = self.extra?()
+                _cell?.present(data: data, extra: extra, indexPath: indexPath)
             case .static:
                 break
             }
@@ -69,7 +68,8 @@ extension TableViewBox {
             case .static:
                 guard let cell: Cell = cell as? Cell else { return }
                 let data: Cell.InnerData = self[indexPath]
-                cell.present(data: data, indexPath: indexPath)
+                let extra: Cell.ExtraData? = self.extra?()
+                cell.present(data: data, extra: extra, indexPath: indexPath)
             }
         }
 
@@ -80,61 +80,3 @@ extension TableViewBox {
         }
     }
 }
-
-//extension TableViewBox.SingleSection {
-//    private final class DataSource<Presentable: SingleSectionTableViewPresentable>: NSObject, UITableViewDataSource {
-//
-//        var presentable: Presentable
-//        init(presentable: Presentable) {
-//            self.presentable = presentable
-//        }
-//
-//        func numberOfSections(in tableView: UITableView) -> Int {
-//            return 1
-//        }
-//
-//        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//            return self.presentable.items.count
-//        }
-//
-//        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: Presentable.Cell.identifier, for: indexPath)
-//            switch self.presentable.cellType {
-//            case .dynamic:
-//                let _cell = cell as? Presentable.Cell
-//                let data = self.presentable[indexPath]
-//                _cell?.present(data: data)
-//            case .static:
-//                break
-//            }
-//            return cell
-//        }
-//    }
-//}
-//
-//extension TableViewBox.SingleSection {
-//    private final class Delegate<Presentable: SingleSectionTableViewPresentable>: NSObject, UITableViewDelegate {
-//
-//        var presentable: Presentable
-//        init(presentable: Presentable) {
-//            self.presentable = presentable
-//        }
-//
-//        func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//            switch self.presentable.cellType {
-//            case .dynamic:
-//                return
-//            case .static:
-//                guard let cell = cell as? Presentable.Cell else { return }
-//                let data = self.presentable[indexPath]
-//                cell.present(data: data)
-//            }
-//        }
-//
-//        public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//            tableView.deselectRow(at: indexPath, animated: true)
-//            let data = self.presentable[indexPath]
-//            self.presentable.select?(tableView, indexPath, data)
-//        }
-//    }
-//}

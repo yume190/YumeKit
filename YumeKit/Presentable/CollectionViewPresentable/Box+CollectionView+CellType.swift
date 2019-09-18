@@ -8,7 +8,9 @@
 
 import Foundation
 
-public enum CollectionViewCellType {
-    case `static`(size: CGSize)
-    case `dynamic`(count: Int, height: CGFloat)
+extension Box.CollectionView {
+    public enum CellType {
+        case `static`(size: CGSize)
+        case `dynamic`(count: Int, height: CGFloat)
+    }
 }
