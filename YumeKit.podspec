@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name     = 'YumeKit'
-    s.version  = '5.0.3'
+    s.version  = '5.0.4'
     s.license  = 'MIT'
     s.summary  = "A Library for Yume use"
     s.homepage = 'https://github.com/yume190/YumeKit'
@@ -22,6 +22,7 @@ Pod::Spec.new do |s|
       ss.dependency "YumeKit/FP"
       ss.dependency "YumeKit/Regex"
       ss.dependency "YumeKit/Presentable"
+      ss.dependency "YumeKit/Menu"
       ss.dependency "YumeKit/CodableExtension"
       ss.dependency "YumeKit/Notifiable"
       ss.dependency "YumeKit/Core"
@@ -55,19 +56,29 @@ Pod::Spec.new do |s|
 
     s.subspec "Presentable" do |ss|
       ss.source_files = [
+        "YumeKit/Presentable/Box.swift",
         "YumeKit/Presentable/Presentable.swift",
         "YumeKit/Presentable/UIExtension.swift",
 
-        "YumeKit/Presentable/CollectionViewPresentable/CollectionViewBox.swift",
-        "YumeKit/Presentable/CollectionViewPresentable/CollectionViewCellType.swift",
-        "YumeKit/Presentable/CollectionViewPresentable/CollectionViewPresentable.swift",
+        "YumeKit/Presentable/CollectionViewPresentable/*.swift",
         "YumeKit/Presentable/CollectionViewPresentable/SingleSection/*.swift",
 
-        "YumeKit/Presentable/TableViewPresentable/TableViewBox.swift",
-        "YumeKit/Presentable/TableViewPresentable/TableViewCellType.swift",
-        "YumeKit/Presentable/TableViewPresentable/TableViewPresentable.swift",
+        "YumeKit/Presentable/TableViewPresentable/*.swift",
         "YumeKit/Presentable/TableViewPresentable/SingleSection/*.swift",
         "YumeKit/Presentable/TableViewPresentable/MultiSection/*.swift"
+      ]
+
+      ss.framework  = "Foundation"
+    end
+
+    s.subspec "Menu" do |ss|
+      ss.source_files = [
+        "Menu/Drawable/*.swift",
+        "Menu/Drawable/Factory/*.swift",
+        "Menu/Drawable/Factory/Derived/*.swift",
+
+        "Menu/Menu/*.swift",
+        "Menu/Menu/Protocol/*.swift",
       ]
 
       ss.framework  = "Foundation"
