@@ -9,13 +9,11 @@
 /* Begin PBXBuildFile section */
 		A815FD3522EED01E001440C4 /* MenuSelectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A815FD3422EED01E001440C4 /* MenuSelectable.swift */; };
 		A815FD3822EED049001440C4 /* Drawerable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A815FD3722EED049001440C4 /* Drawerable.swift */; };
-		A815FD3A22EED0B1001440C4 /* DrawerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A815FD3922EED0B1001440C4 /* DrawerFactory.swift */; };
 		A815FD3C22EED0CB001440C4 /* Menu+OpenLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = A815FD3B22EED0CB001440C4 /* Menu+OpenLeft.swift */; };
 		A815FD3E22EED1CA001440C4 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A815FD3D22EED1CA001440C4 /* Menu.swift */; };
 		A815FD4022EED1E1001440C4 /* Menu+Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = A815FD3F22EED1E1001440C4 /* Menu+Item.swift */; };
 		A815FD4222EED225001440C4 /* MenuListable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A815FD4122EED225001440C4 /* MenuListable.swift */; };
 		A815FD4422EED27F001440C4 /* Menu+ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A815FD4322EED27F001440C4 /* Menu+ViewController.swift */; };
-		A815FD4B22EEEBF2001440C4 /* Drawerable+SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A815FD4A22EEEBF2001440C4 /* Drawerable+SideMenu.swift */; };
 		A815FD4D22EFEC16001440C4 /* SuperStack+Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = A815FD4C22EFEC16001440C4 /* SuperStack+Config.swift */; };
 		A815FD4F22EFECB8001440C4 /* SuperStack+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = A815FD4E22EFECB8001440C4 /* SuperStack+Type.swift */; };
 		A815FD5122EFEDA8001440C4 /* SuperStack+default.swift in Sources */ = {isa = PBXBuildFile; fileRef = A815FD5022EFEDA7001440C4 /* SuperStack+default.swift */; };
@@ -48,10 +46,8 @@
 		A83699BE1E82760D00B6C006 /* VerticalLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83699BD1E82760D00B6C006 /* VerticalLabel.swift */; };
 		A83CBCFE232F804D001421E0 /* Drawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83CBCFD232F804D001421E0 /* Drawer.swift */; };
 		A83CBD00232F821E001421E0 /* Drawer+Way.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83CBCFF232F821E001421E0 /* Drawer+Way.swift */; };
-		A83CBD03232F847C001421E0 /* DrawerFactoryable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83CBD02232F847C001421E0 /* DrawerFactoryable.swift */; };
 		A83CBD06232F875A001421E0 /* Menu+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83CBD05232F875A001421E0 /* Menu+Type.swift */; };
 		A83CBD08232F89CE001421E0 /* Menu+Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83CBD07232F89CE001421E0 /* Menu+Resource.swift */; };
-		A83CBD0A232F91F6001421E0 /* Drawerable+MM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83CBD09232F91F6001421E0 /* Drawerable+MM.swift */; };
 		A83CBD172331CCB4001421E0 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83CBD162331CCB4001421E0 /* Box.swift */; };
 		A862E4FF224087550047701B /* TableViewBox+MultiSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A862E4FE224087550047701B /* TableViewBox+MultiSection.swift */; };
 		A862E50422408A930047701B /* Box+TableView+CellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A862E50322408A930047701B /* Box+TableView+CellType.swift */; };
@@ -108,13 +104,11 @@
 /* Begin PBXFileReference section */
 		A815FD3422EED01E001440C4 /* MenuSelectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSelectable.swift; sourceTree = "<group>"; };
 		A815FD3722EED049001440C4 /* Drawerable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawerable.swift; sourceTree = "<group>"; };
-		A815FD3922EED0B1001440C4 /* DrawerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerFactory.swift; sourceTree = "<group>"; };
 		A815FD3B22EED0CB001440C4 /* Menu+OpenLeft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Menu+OpenLeft.swift"; sourceTree = "<group>"; };
 		A815FD3D22EED1CA001440C4 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		A815FD3F22EED1E1001440C4 /* Menu+Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Menu+Item.swift"; sourceTree = "<group>"; };
 		A815FD4122EED225001440C4 /* MenuListable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuListable.swift; sourceTree = "<group>"; };
 		A815FD4322EED27F001440C4 /* Menu+ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Menu+ViewController.swift"; sourceTree = "<group>"; };
-		A815FD4A22EEEBF2001440C4 /* Drawerable+SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Drawerable+SideMenu.swift"; sourceTree = "<group>"; };
 		A815FD4C22EFEC16001440C4 /* SuperStack+Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SuperStack+Config.swift"; sourceTree = "<group>"; };
 		A815FD4E22EFECB8001440C4 /* SuperStack+Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SuperStack+Type.swift"; sourceTree = "<group>"; };
 		A815FD5022EFEDA7001440C4 /* SuperStack+default.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SuperStack+default.swift"; sourceTree = "<group>"; };
@@ -145,10 +139,8 @@
 		A83699BD1E82760D00B6C006 /* VerticalLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalLabel.swift; sourceTree = "<group>"; };
 		A83CBCFD232F804D001421E0 /* Drawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawer.swift; sourceTree = "<group>"; };
 		A83CBCFF232F821E001421E0 /* Drawer+Way.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Drawer+Way.swift"; sourceTree = "<group>"; };
-		A83CBD02232F847C001421E0 /* DrawerFactoryable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerFactoryable.swift; sourceTree = "<group>"; };
 		A83CBD05232F875A001421E0 /* Menu+Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Menu+Type.swift"; sourceTree = "<group>"; };
 		A83CBD07232F89CE001421E0 /* Menu+Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Menu+Resource.swift"; sourceTree = "<group>"; };
-		A83CBD09232F91F6001421E0 /* Drawerable+MM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Drawerable+MM.swift"; sourceTree = "<group>"; };
 		A83CBD162331CCB4001421E0 /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 		A862E4FE224087550047701B /* TableViewBox+MultiSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableViewBox+MultiSection.swift"; sourceTree = "<group>"; };
 		A862E501224088D30047701B /* TableViewBox+SingleSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableViewBox+SingleSection.swift"; sourceTree = "<group>"; };
@@ -257,7 +249,6 @@
 				A83CBCFD232F804D001421E0 /* Drawer.swift */,
 				A83CBCFF232F821E001421E0 /* Drawer+Way.swift */,
 				A815FD3722EED049001440C4 /* Drawerable.swift */,
-				A83CBD01232F845E001421E0 /* Factory */,
 			);
 			path = Drawable;
 			sourceTree = "<group>";
@@ -347,25 +338,6 @@
 				A8FE866922D3272A0052ADD6 /* ProgressBar.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		A83CBD01232F845E001421E0 /* Factory */ = {
-			isa = PBXGroup;
-			children = (
-				A83CBD02232F847C001421E0 /* DrawerFactoryable.swift */,
-				A815FD3922EED0B1001440C4 /* DrawerFactory.swift */,
-				A83CBD04232F84E9001421E0 /* Derived */,
-			);
-			path = Factory;
-			sourceTree = "<group>";
-		};
-		A83CBD04232F84E9001421E0 /* Derived */ = {
-			isa = PBXGroup;
-			children = (
-				A815FD4A22EEEBF2001440C4 /* Drawerable+SideMenu.swift */,
-				A83CBD09232F91F6001421E0 /* Drawerable+MM.swift */,
-			);
-			path = Derived;
 			sourceTree = "<group>";
 		};
 		A862E4FD224087370047701B /* MultiSection */ = {
@@ -722,7 +694,6 @@
 				A8756E3D1F31827900DC00EC /* Rest.swift in Sources */,
 				A8E19C431E8249E1000DE567 /* UIImageExtension.swift in Sources */,
 				A83CBD06232F875A001421E0 /* Menu+Type.swift in Sources */,
-				A815FD4B22EEEBF2001440C4 /* Drawerable+SideMenu.swift in Sources */,
 				A83CBD172331CCB4001421E0 /* Box.swift in Sources */,
 				A815FD3E22EED1CA001440C4 /* Menu.swift in Sources */,
 				A8184ECD2240EE3A00326988 /* Box+CollectionView.swift in Sources */,
@@ -730,7 +701,6 @@
 				A8EFB1D1224E0415007D8818 /* Removable.swift in Sources */,
 				A8732A2922407F2200CD5C56 /* Presentable.swift in Sources */,
 				A8FE866A22D3272A0052ADD6 /* ProgressBar.swift in Sources */,
-				A83CBD0A232F91F6001421E0 /* Drawerable+MM.swift in Sources */,
 				A8184ED22240EF5900326988 /* CollectionViewBox+SingleSection.swift in Sources */,
 				A8756E361F317CFD00DC00EC /* YumeSerializable.swift in Sources */,
 				A8732A16223F962B00CD5C56 /* YumeTextField.swift in Sources */,
@@ -752,7 +722,6 @@
 				A8184ED02240EE9D00326988 /* SingleSectionCollectionViewPresentable.swift in Sources */,
 				A862E50422408A930047701B /* Box+TableView+CellType.swift in Sources */,
 				A83699961E8251E400B6C006 /* SuperStack.swift in Sources */,
-				A815FD3A22EED0B1001440C4 /* DrawerFactory.swift in Sources */,
 				A83699971E8251E400B6C006 /* SuperFetchedResultsControllerDelegate.swift in Sources */,
 				A862E4FF224087550047701B /* TableViewBox+MultiSection.swift in Sources */,
 				A8732A13223F960E00CD5C56 /* EventSendable.swift in Sources */,
@@ -775,7 +744,6 @@
 				A8732A322240860F00CD5C56 /* TableViewPresentable.swift in Sources */,
 				A8FE866E22D328100052ADD6 /* UIBarButtonItem+Button.swift in Sources */,
 				A8184EC82240DAE300326988 /* Box+TableView.swift in Sources */,
-				A83CBD03232F847C001421E0 /* DrawerFactoryable.swift in Sources */,
 				A8184ECB2240ED2100326988 /* CollectionViewPresentable.swift in Sources */,
 				A8FE866022D31CF20052ADD6 /* UIColor+Ex.swift in Sources */,
 				A83699BE1E82760D00B6C006 /* VerticalLabel.swift in Sources */,
@@ -964,15 +932,13 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = YumeKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 5.0.5;
 				MODULEMAP_FILE = "";
+				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yume190.YumeKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -998,14 +964,11 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = YumeKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 5.0.5;
 				MODULEMAP_FILE = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yume190.YumeKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";

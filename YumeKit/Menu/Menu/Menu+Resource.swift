@@ -10,7 +10,6 @@ import UIKit
 
 extension Menu {
     internal final class Resource: NSObject {
-        
         internal var list: MenuListable.Type = DummyMenuList.self
         private weak var menu: Menu.Instance?
         init(menu: Menu.Instance) {

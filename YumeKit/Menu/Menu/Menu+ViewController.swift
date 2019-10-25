@@ -9,11 +9,11 @@
 import UIKit
 
 extension UIViewController {
-    static var drawer: Drawer.Instance? {
+    static public var drawer: Drawer.Instance? {
         return UIApplication.shared.keyWindow?.rootViewController as? Drawer.Instance
     }
     
-    static var menu: Menu.Instance? {
+    static public var menu: Menu.Instance? {
         return self.drawer?.menu
     }
 }
@@ -21,7 +21,7 @@ extension UIViewController {
 extension Menu {
     open class ViewController: UIViewController, MenuSelectable {
         
-        @IBOutlet private weak var tableview: UITableView?
+        @IBOutlet public weak var tableview: UITableView?
         
         public weak var drawer: Drawer.Instance?
         

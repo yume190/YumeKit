@@ -10,7 +10,6 @@ import Foundation
 
 extension Menu {
     public enum Types {
-        
         case storyboard(storyboard: String, name: String)
         case storyboardNav(storyboard: String, name: String)
         case xib(() -> UIViewController?)
