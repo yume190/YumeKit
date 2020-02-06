@@ -60,3 +60,19 @@ extension NSNotification.Name: Notifiable {
         return self
     }
 }
+
+#if canImport(RxSwift)
+import RxSwift
+
+public extension Notifiable {
+    var rx: Observable<Notification> {
+        return NotificationCenter.default.rx
+            .notification(self.name)
+    }
+    
+    func autoDeallocatedRx(_ object: NSObject) -> Observable<Notification> {
+        return self.rx
+          .takeUntil(object.rx.deallocated) //页面销毁自动移除通知监听
+    }
+}
+#endif
