@@ -12,7 +12,7 @@ public protocol Cancelable {
     func cancel()
 }
 
-public protocol NotificationCancelable {}
+public protocol NotificationCancelable: Cancelable {}
 
 fileprivate final class NotificationObserver: NotificationCancelable {
     
